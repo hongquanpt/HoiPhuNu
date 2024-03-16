@@ -1,0 +1,42 @@
+﻿@{
+
+
+     var hinhanh = (List<Web_Girls.Models.Context.AnhTieuBieu>)ViewBag.hinhanh;
+    
+}
+<ul class="photograph_nav  wow fadeInDown">
+     @foreach (var item in hinhanh)
+     {
+          <li>
+               <div class="photo_grid">
+                    <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="~/Assets/Sbadmin/img/@item.UrlAnh" title=" @item.TieuDe"> <img style="height: 200px" src="~/Assets/Sbadmin/img/@item.UrlAnh" alt="" /></a> </figure>
+               </div>
+          </li>
+     }
+
+     @*<li>
+          <div class="photo_grid">
+               <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="~/Assets/Newsfeed/images/photograph_img3.jpg" title="Photography Ttile 2"> <img src="images/photograph_img3.jpg" alt="" /> </a> </figure>
+          </div>
+     </li>
+     <li>
+          <div class="photo_grid">
+               <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="~/Assets/Newsfeed/images/photograph_img4.jpg" title="Photography Ttile 3"> <img src="images/photograph_img4.jpg" alt="" /> </a> </figure>
+          </div>
+     </li>
+     <li>
+          <div class="photo_grid">
+               <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="~/Assets/Newsfeed/images/photograph_img4.jpg" title="Photography Ttile 4"> <img src="images/photograph_img4.jpg" alt="" /> </a> </figure>
+          </div>
+     </li>
+     <li>
+          <div class="photo_grid">
+               <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="~/Assets/Newsfeed/images/photograph_img2.jpg" title="Photography Ttile 5"> <img src="images/photograph_img2.jpg" alt="" /> </a> </figure>
+          </div>
+     </li>
+     <li>
+          <div class="photo_grid">
+               <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="~/Assets/Newsfeed/images/photograph_img3.jpg" title="Photography Ttile 6"> <img src="images/photograph_img3.jpg" alt="" /> </a> </figure>
+          </div>
+     </li>*@
+</ul>

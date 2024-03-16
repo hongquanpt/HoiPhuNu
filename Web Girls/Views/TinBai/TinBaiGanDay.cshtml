@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "AddTinBai";
+
+    var list = (List<Web_Girls.Models.Context.TinBai>)ViewBag.tinbai;
+}
+
+<div class="latest_post_container">
+     <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+     <ul class="latest_postnav">
+          @foreach (var item in list)
+          {
+               <li>
+                    <div class="media">
+                         <a href="@Url.Action("ChiTiet","Account",new {id = item.MaTinBai })" class="media-left"> <img alt="" src="~/Assets/Sbadmin/img/@item.Img"> </a>
+                         <div class="media-body"> <a href="@Url.Action("ChiTiet","Account",new {id = item.MaTinBai })" class="catg_title"> @item.TieuDe</a> </div>
+                    </div>
+               </li>
+          }
+
+          @*<li>
+               <div class="media">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img1.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+               </div>
+          </li>
+          <li>
+               <div class="media">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img1.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+               </div>
+          </li>
+          <li>
+               <div class="media">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img1.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+               </div>
+          </li>
+          <li>
+               <div class="media">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img1.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+               </div>
+          </li>*@
+     </ul>
+     <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+</div>

@@ -1,0 +1,175 @@
+﻿
+@{
+     ViewBag.Title = "SuaTinBai";
+     Layout = "~/Views/Shared/_LayoutQuanTriCapHV.cshtml";
+     var tin = (Web_Girls.Models.Context.TinBai)ViewBag.tinbai;
+     var loaitinbai = (List<Web_Girls.Models.Context.LoaiTinBai>)ViewBag.loaitinbai;
+}
+
+<div id="page-wrapper">
+     <div style="color: #fff; padding: 16px 30px; margin: -20px -25px 10px; border-radius: 3px 3px 0 0; background: #299be4;">
+          <div class="row">
+               <div class="col-sm-12">
+                    <h2 style="font-weight: bold">Thêm mới tin bài hoạt động</h2>
+               </div>
+          </div>
+     </div>
+     <form role="form" method="post" action="/TinBai/SuaTinBai" class="was-validated" enctype="multipart/form-data">
+          <div class="row mt-4">
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Loại tin bài</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <select class="form-control" name="MaLoaiTinBai">
+                              @foreach (var it in loaitinbai)
+                              {
+                                   <option value="@it.MaLoaiTinbai" @(tin.MaLoaiTinBai == it.MaLoaiTinbai ? "selected" : "")>@it.TenLoaiTinBai</option>
+                                   @*<option value="@it.MaLoaiTinbai">@it.TenLoaiTinBai</option>*@
+                              }
+
+                         </select>
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Tiêu đề</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <textarea class="form-control" placeholder="Tiêu đề" name="TieuDe">@tin.TieuDe</textarea>
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Nội dung</label>
+                    </div>
+                    <div class="form-group col-lg-10">
+                         <textarea style="height:400px" class="form-control" placeholder="Nội dung tin bài" name="NoiDung">@tin.NoiDung</textarea>
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Ảnh thứ nhất</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <input type="file" class="form-control" name="img" id="image1">
+                         <img class="img-fluid" id="preview1" src="~/Assets/Sbadmin/img/@tin.Img" />
+                         <script>
+                              image1.onchange = evt1 => {
+
+                                   const [file1] = image1.files
+
+                                   if (file1) {
+                                        preview1.src = URL.createObjectURL(file1);
+                                        $("#preview1").show();
+                                   }
+                              }
+
+                         </script>
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Tiêu đề ảnh thứ nhất</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <textarea class="form-control" placeholder="Tiêu đề ảnh" name="imgtitle" required>@tin.imgtitle</textarea>
+                    </div>
+               </div>
+               @if (tin.Img1 != null)
+               {
+                    <div class="col-lg-12 d-flex">
+                         <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                              <label>Ảnh thứ 2</label>
+                         </div>
+                         <div class="form-group col-lg-5">
+                              <input type="file" class="form-control" name="image2" id="image2">
+                              <img class="img-fluid" id="preview2" src="~/Assets/Sbadmin/img/@tin.Img1" />
+                              <script>
+                                   image2.onchange = evt2 => {
+
+                                        const [file2] = image2.files
+
+                                        if (file2) {
+                                             preview2.src = URL.createObjectURL(file2);
+                                             $("#preview2").show();
+                                        }
+                                   }
+
+                              </script>
+                         </div>
+                    </div>
+                    <div class="col-lg-12 d-flex">
+                         <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                              <label>Tiêu đề ảnh thứ 2</label>
+                         </div>
+                         <div class="form-group col-lg-5">
+                              <textarea class="form-control" placeholder="Tiêu đề ảnh" name="imgtitle1">@tin.imgtitle1</textarea>
+                         </div>
+                    </div>
+               }
+               else
+               {
+                    <div class="col-lg-12 d-flex">
+                         <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                              <label>Ảnh thứ 2</label>
+                         </div>
+                         <div class="form-group col-lg-5">
+                              <input type="file" class="form-control" name="image2" id="image2">
+                              <img class="img-fluid" id="preview2" />
+                              <script>
+                                   image2.onchange = evt2 => {
+
+                                        const [file2] = image2.files
+
+                                        if (file2) {
+                                             preview2.src = URL.createObjectURL(file2);
+                                             $("#preview2").show();
+                                        } ``
+                                   }
+
+                              </script>
+                         </div>
+                    </div>
+                    <div class="col-lg-12 d-flex">
+                         <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                              <label>Tiêu đề ảnh thứ 2</label>
+                         </div>
+                         <div class="form-group col-lg-5">
+                              <textarea class="form-control" placeholder="Tiêu đề ảnh" name="imgtitle1"></textarea>
+                         </div>
+                    </div>
+               }
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Người viết</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <textarea class="form-control" placeholder="Người viết" name="NguoiViet" required>@tin.NguoiViet</textarea>
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Đơn vị</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <textarea class="form-control" placeholder="Đơn vị" name="DonVi" required>@tin.DonVi</textarea>
+                    </div>
+               </div>
+               @*<div class="col-lg-12 d-flex">
+                         <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                              <label>Người đăng</label>
+                         </div>
+                         <div class="form-group col-lg-5">
+                              <input class="form-control" placeholder="Mã Hội viên" name="MaHV" required>
+                         </div>
+                    </div>*@
+          <div style="margin: 0 auto;">
+               <a style=" width: 157px;" class="btn btn-danger text-uppercase text-end" href="@Url.Action("ListTinBai","TinBai")"> Hủy</a>
+               <button style=" width: 157px;" class="btn btn-primary text-uppercase text-end" type="submit">Lưu</button>
+          </div>
+
+          </div>
+     </form>
+</div>
+

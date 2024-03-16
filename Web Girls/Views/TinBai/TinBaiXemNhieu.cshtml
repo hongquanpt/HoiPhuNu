@@ -1,0 +1,38 @@
+﻿@{
+     ViewBag.Title = "AddTinBai";
+
+     var list = (List<Web_Girls.Models.Context.TinBai>)ViewBag.tinbai1;
+}
+<div class="single_sidebar">
+     <h2><span>Xem nhiều nhất</span></h2>
+     <ul class="spost_nav">
+          @foreach (var item in list)
+          {
+               <li>
+                    <div class="media wow fadeInDown">
+                         <a href="@Url.Action("ChiTiet","Account",new {id = item.MaTinBai })" class="media-left"> <img alt="" src="~/Assets/Sbadmin/img/@item.Img"> </a>
+                         <div class="media-body"> <a href="@Url.Action("ChiTiet","Account",new {id = item.MaTinBai })" class="catg_title"> @item.TieuDe</a> </div>
+                    </div>
+               </li>
+          }
+
+          @*<li>
+               <div class="media wow fadeInDown">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img2.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+               </div>
+          </li>
+          <li>
+               <div class="media wow fadeInDown">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img1.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+               </div>
+          </li>
+          <li>
+               <div class="media wow fadeInDown">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img2.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+               </div>
+          </li>*@
+     </ul>
+</div>

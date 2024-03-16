@@ -1,0 +1,118 @@
+﻿
+@{
+     ViewBag.Title = "ListTinBaiChuaPheDuyet";
+     Layout = "~/Views/Shared/_LayoutQuanTriCapHV.cshtml";
+}
+
+
+@{
+     ViewBag.Title = "ListTinBai";
+     Layout = "~/Views/Shared/_LayoutQuanTriCapHV.cshtml";
+     var list = (List<Web_Girls.Models.ModelsView.TinBaiView>)ViewBag.list;
+}
+
+<div style="color: #fff; padding: 16px 30px; margin: -20px -25px 10px; border-radius: 3px 3px 0 0; background: #299be4;">
+     <div class="row">
+          <div class="col-sm-10">
+               <h2 style="font-weight: bold">Danh sách tin bài đang chờ phê duyệt</h2>
+          </div>
+          <div class="col-sm-2">
+               <a href="@Url.Action("AddTinBai","TinBai")" class="btn btn-primary" style="background-color: #ffb836;"><i class="fas fa-plus"></i> <span style="color: white">Thêm mới</span></a>
+               @*<a href="#" class="btn btn-secondary" style="display: none;"><i class="material-icons">&#xE24D;</i> <span>Xuất Excel</span></a>*@
+               <!--</div>-->
+          </div>
+     </div>
+</div>
+<div class="table-responsive">
+     <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+               <tr>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung tóm tắt</th>
+                    <th>Ngày đăng</th>
+                    <th>Người viết</th>
+                    <th>Loại tin bài</th>
+                    <th></th>
+                    <th></th>
+               </tr>
+          </thead>
+          <tbody>
+               @foreach (var it in list)
+               {
+                    <tr>
+
+                         <td>@it.TieuDe</td>
+                         <td>@it.NoiDungTomTat</td>
+                         <td>@it.NgayDang.Value.ToString("dd-MM-yyyy")</td>
+                         <td>@it.NguoiViet</td>
+                         <td>@it.LoaiTinBai</td>
+                         <td><a class="btn btn-outline-primary" href="@Url.Action("ChiTiet","Account",new {id = it.MaTinBai })" target="_blank">Xem trước</a></td>
+                         <td class="center d-flex" style="list-style-type: none;">
+                              <a class="btn btn-primary"  onclick="PheDuyet(@it.MaTinBai)">Phê duyệt</a>
+                              <a class="btn btn-danger" onclick="KhongPheDuyet(@it.MaTinBai)">Không phê duyệt</a>
+                         </td>
+                    </tr>
+               }
+          </tbody>
+     </table>
+     <script>
+          function PheDuyet(ma) {
+                            Swal.fire({
+                                   title: 'Phê duyệt tin bài này?',
+                                   showCancelButton: true,
+                                   confirmButtonText: 'OK',
+                                   denyButtonText: `Hủy`,
+                            }).then((result) => {
+                                                  /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                      $.ajax({
+                                             url:'/TinBai/PheDuyetTinBai',
+                                             data: {
+                                                  id: ma
+                                             },
+                                             type: 'POST',
+                                             dataType: 'json',
+                                           success: function (res) {
+                                                if (res.status == true) {
+                                                     alert("Đã phê duyệt.");
+                                                     window.location = '@Url.Action("ListTinBaiChuaPheDuyet","TinBai")'
+                                                }
+                                           }
+                                      });
+
+                                }
+                            })
+          }
+          function KhongPheDuyet(ma) {
+                            Swal.fire({
+                                   title: 'Không phê duyệt tin bài này?',
+                                   showCancelButton: true,
+                                   confirmButtonText: 'Ok',
+                                   denyButtonText: `Hủy`,
+                            }).then((result) => {
+                                                  /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                      $.ajax({
+                                             url:'/TinBai/XoaTinBai',
+                                             data: {
+                                                  id: ma
+                                             },
+                                             type: 'POST',
+                                             dataType: 'json',
+                                           success: function (res) {
+                                                if (res.status == true) {
+                                                     window.location = '@Url.Action("ListTinBaiChuaPheDuyet","TinBai")'
+                                                }
+                                           }
+
+                                      });
+
+                                }
+                            })
+                     }
+     </script>
+</div>
+
+
+
+

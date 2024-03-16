@@ -1,0 +1,130 @@
+﻿
+@{
+     ViewBag.Title = "GuiCongVanCapHoi";
+     Layout = "~/Views/Shared/_LayoutQuanTriCapHoi.cshtml";
+     var list = (List<Web_Girls.Models.Context.HoiPhuNu>)ViewBag.list;
+}
+<script src="~/Assets/Sbadmin/vendor/jquery/jquery.min.js"></script>
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+     <script>
+     // Hiển thị hộp thoại alert nếu có thông báo
+      Swal.fire({
+               position: 'center',
+               icon: 'success',
+               title: '@Html.Raw(ViewBag.message)',
+               showConfirmButton: false,
+               timer: 1500
+          })
+     </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.Loi))
+{
+     <script>
+     // Hiển thị hộp thoại alert nếu có thông báo
+      Swal.fire({
+               position: 'center',
+               icon: 'error',
+               title: '@Html.Raw(ViewBag.Loi)',
+               showConfirmButton: false,
+               timer: 1500
+          })
+     </script>
+}
+<div id="page-wrapper">
+     <div style="color: #fff; padding: 16px 30px; margin: -20px -25px 10px; border-radius: 3px 3px 0 0; background: #299be4;">
+          <div class="row">
+               <div class="col-sm-12">
+                    <h2 style="font-weight: bold">Gửi công văn cho các chi hội</h2>
+               </div>
+          </div>
+     </div>
+     <form role="form" method="post" action="/CongVan/GuiCongVanCapHoi" class="was-validated" enctype="multipart/form-data">
+          <div class="row mt-4">
+               <input type="text" name="NoiNhan" style="display:none" />
+               @*<input type="text" name="NoiGui" value="0" style="display:none" />*@
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Gửi đến:</label>
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex" style=" margin-top: -29px;">
+                    <div class="form-group col-lg-1">
+                         <input style="margin-top: 10px; /* padding-right: 5px; */ float: right;" type="checkbox" name="checkBoxValues" value="0" />
+                    </div>
+                    <div class="form-group col-lg-3 text-uppercase text-left  d-flex" style="padding: 5px 5px;">
+                         <label>Hội Phụ nữ Học viện</label>
+                    </div>
+               </div>
+               @foreach (var item in list)
+               {
+                    <div class="col-lg-12 d-flex" style=" margin-top: -29px;">
+                         <div class="form-group col-lg-1">
+                              <input style="margin-top: 10px; /* padding-right: 5px; */ float: right;" type="checkbox" name="checkBoxValues" value="@item.MaHPN" />
+                         </div>
+                         <div class="form-group col-lg-3 text-uppercase text-left  d-flex" style="padding: 5px 5px;">
+                              <label>@item.TenHPN</label>
+                         </div>
+                    </div>
+               }
+
+
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-1 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Tiêu đề</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <textarea class="form-control" placeholder="Tiêu đề" name="TieuDe" required></textarea>
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-1 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Nội dung</label>
+                    </div>
+                    <div class="form-group col-lg-10">
+                         <textarea class="form-control" placeholder="Nội dung" name="NoiDung"></textarea>
+                    </div>
+               </div>
+               <div class="col-lg-12" style="display:none">
+                    <div class="form-group col-lg-2 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Nội dung</label>
+                    </div>
+                    <div class="form-group col-lg-10">
+                         <input class="form-control" placeholder="Nội dung" name="NoiGui" value="0" />
+                    </div>
+               </div>
+               <div class="col-lg-12 d-flex">
+                    <div class="form-group col-lg-1 text-uppercase text-left" style="padding: 5px 5px;">
+                         <label>Tệp đính kèm</label>
+                    </div>
+                    <div class="form-group col-lg-5">
+                         <input type="file" class="form-control" name="file" id="file" required>
+                    </div>
+               </div>
+
+               <div style="margin: 0 auto;">
+                    <a style=" width: 157px;" class="btn btn-danger text-uppercase text-end" href="@Url.Action("GuiDenCapHoi","CongVan",new { ma = Session["MaHoi"] })"> Hủy</a>
+                    <button style=" width: 157px;" class="btn btn-primary text-uppercase text-end" type="submit">Gửi</button>
+               </div>
+               <script>
+                    $(document).ready(function () {
+                         $('form').submit(function (event) {
+                              var selectedValues = [];
+                              $('input[name="checkBoxValues"]:checked').each(function () {
+                                   selectedValues.push($(this).val());
+                              });
+                              console.log(selectedValues);
+
+                              // Đặt giá trị vào một hidden input để gửi đi
+                              $('input[name="NoiNhan"]').val(selectedValues.join(','));
+
+                              // Hoặc bạn có thể gửi giá trị trực tiếp bằng AJAX
+                         });
+                    });
+               </script>
+          </div>
+     </form>
+</div>
+
+
+

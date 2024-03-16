@@ -1,0 +1,84 @@
+﻿
+@{
+     ViewBag.Title = "GuiDenCapHoi";
+     Layout = "~/Views/Shared/_LayoutQuanTriCapHoi.cshtml";
+     var list = (List<Web_Girls.Models.ModelsView.CongVanView>)ViewBag.list;
+}
+
+<div id="page-wrapper">
+     <div style="color: #fff; padding: 16px 30px; margin: -20px -25px 10px; border-radius: 3px 3px 0 0; background: #299be4;">
+          <div class="row">
+               <div class="col-sm-8">
+                    <h2 style="font-weight: bold">Công văn, văn bản gửi đến</h2>
+               </div>
+               <div class="col-sm-4">
+
+                    @*<a href="#" class="btn btn-secondary" style="display: none;"><i class="material-icons">&#xE24D;</i> <span>Xuất Excel</span></a>*@
+                    <!--</div>-->
+               </div>
+          </div>
+     </div>
+     <div class="table-responsive">
+          <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+               <thead>
+                    <tr>
+                         <th style="display:none">Mã</th>
+                         <th>Tiêu đề</th>
+                         <th>Nội dung</th>
+                         <th>Nơi gửi</th>
+                         <th>Thời gian</th>
+                         <th>Chi tiết</th>                                            
+                    </tr>
+               </thead>
+               <tbody>
+                    @foreach (var it in list)
+                    {
+                         if (it.DaXem == false)
+                         {
+                              <tr style="background-color: #00000024; font-weight: bold; color: black;">
+                                   <td style="display:none">@it.Ma</td>
+                                   <td>@it.TieuDe</td>
+                                   <td>@it.NoiDung</td>
+                                   <td>@it.NoiGui</td>
+                                   <td>@it.ThoiGianGui.ToString("dd/M/yyyy HH:mm:ss")</td>
+                                   <td><a class="btn btn-outline-primary" href="@Url.Action("ChiTiet","CongVan", new { ma = it.Ma})">Chi tiết</a></td>
+                              </tr>
+                         }
+                         else
+                         {
+                              <tr>
+                                   <td style="display:none">@it.Ma</td>
+                                   <td>@it.TieuDe</td>
+                                   <td>@it.NoiDung</td>
+                                   <td>@it.NoiGui</td>
+                                   <td>@it.ThoiGianGui.ToString("dd/M/yyyy HH:mm:ss")</td>
+                                   <td><a class="btn btn-outline-primary" href="@Url.Action("ChiTiet","CongVan", new { ma = it.Ma})">Chi tiết</a></td>
+
+
+                              </tr>
+                         }
+
+                    }
+               </tbody>
+          </table>
+
+
+          @*<script>
+                    $("#dataTable").on("click", "#loadModal", function () {
+                          var id = $(this).closest("tr").find("td").eq(0).html();
+                          console.log(id);
+                          $.ajax({
+                                url: '@Url.Action("ThamGia", "LDST")',
+                                data: { ma: id },
+                                type: 'GET', // Change to 'POST' if needed
+                                success: function (data) {
+                                      $('#showmodal1 .modal-dialog').html(data);
+                                }
+                          });
+                   });
+               </script>*@
+     </div>
+
+
+</div>
+

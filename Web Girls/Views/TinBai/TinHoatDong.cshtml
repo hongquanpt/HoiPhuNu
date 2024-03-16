@@ -1,0 +1,51 @@
+﻿@{
+     ViewBag.Title = "AddTinBai";
+
+     var list = (List<Web_Girls.Models.Context.TinBai>)ViewBag.tinbaihoatdong;
+     var tinbai = (Web_Girls.Models.Context.TinBai)ViewBag.tinbaimoinhat;
+}
+
+<h2><span><a  style="color:white" href="@Url.Action("TinBaiTheoLoai","Tinbai",new {id = tinbai.MaLoaiTinBai,page = 1 })">Tin hoạt động</a></span></h2>
+<div class="single_post_content_left">
+     <ul class="business_catgnav  wow fadeInDown">
+          <li>
+               <figure class="bsbig_fig">
+                    <a href="@Url.Action("ChiTiet","Account",new {id = tinbai.MaTinBai })" class="featured_img" style="font-size: 20px;"> <img alt="" src="~/Assets/Sbadmin/img/@tinbai.Img"> <span class="overlay"></span> </a>
+                    <figcaption> <a href="@Url.Action("ChiTiet","Account",new {id = tinbai.MaTinBai })">@tinbai.TieuDe</a> </figcaption>
+                    <p> @tinbai.NoiDungTomTat@*Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...*@</p>
+               </figure>
+          </li>
+     </ul>
+</div>
+<div class="single_post_content_right">
+     <ul class="spost_nav">
+          @foreach (var item in list)
+          {
+               <li>
+                    <div class="media wow fadeInDown">
+                         <a href="@Url.Action("ChiTiet","Account",new {id = item.MaTinBai })" class="media-left"> <img alt="" src="~/Assets/Sbadmin/img/@item.Img"> </a>
+                         <div class="media-body"> <a href="@Url.Action("ChiTiet","Account",new {id = item.MaTinBai })" class="catg_title"> @item.TieuDe @*Aliquam malesuada diam eget turpis varius 1*@</a> </div>
+                    </div>
+               </li>
+          }
+
+          @*<li>
+               <div class="media wow fadeInDown">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img2.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+               </div>
+          </li>
+          <li>
+               <div class="media wow fadeInDown">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img1.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+               </div>
+          </li>
+          <li>
+               <div class="media wow fadeInDown">
+                    <a href="pages/single_page.html" class="media-left"> <img alt="" src="~/Assets/Newsfeed/images/post_img2.jpg"> </a>
+                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+               </div>
+          </li>*@
+     </ul>
+</div>

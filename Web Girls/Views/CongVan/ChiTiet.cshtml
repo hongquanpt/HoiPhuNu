@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ChiTiet";
+    if (Session["Quyen"].ToString() == "1")
+    {
+         Layout = "~/Views/Shared/_LayoutQuanTriCapHV.cshtml";
+    }
+    else if (Session["Quyen"].ToString() == "2")
+    {
+         Layout = "~/Views/Shared/_LayoutQuanTriCapHoi.cshtml";
+    }
+    var cv = (Web_Girls.Models.Context.CongVanBaoCao)ViewBag.cv;
+
+}
+<div id="page-wrapper">
+     <div class="mb-4" style="color: #fff; padding: 16px 30px; margin: -20px -25px 10px; border-radius: 3px 3px 0 0; background: #299be4;">
+          <div class="row">
+               <div class="col-sm-9">
+                    <h2 style="font-weight: bold">Chi tiết</h2>
+               </div>
+          </div>
+     </div>
+     <div class="row">
+          <div class="col-lg-12">
+               <h2 style="color:black"><span>Từ : </span>@ViewBag.NoiGui</h2>
+          </div>
+          <div class="col-lg-12">
+               <h2 style="color:black"><span>Đến : </span>@ViewBag.NoiNhan</h2>
+          </div>
+          <div class="col-lg-12">
+               <h2 style="color:black"><span>Tiêu đề: </span>@cv.TieuDe</h2>
+          </div>
+          <div class="col-lg-12">
+               <h2 style="color:black"><span>Nội dung : </span>@cv.NoiDung</h2>
+          </div>
+          <div class="col-lg-12">
+               @*<h2 style="color:black"><span>Tệp đính kèm : </span> <a href="@Url.Action("DownloadFile", "CongVan", new { file = cv.TepDinhKem})">@cv.TepDinhKem</a></h2>*@
+               <h2 style="color:black"><span>Tệp đính kèm : </span> <a href="  /Assets/CongVan/@cv.TepDinhKem" target="_blank">@cv.TepDinhKem</a></h2>
+          </div>
+
+     </div>
+     <div style="margin: 0 auto;">
+          @if (Session["Quyen"].ToString() == "1")
+          {
+               <a style=" width: 157px;" class="btn btn-danger text-uppercase text-end" href="@Url.Action("GuiDenCapHV","CongVan")">Quay về</a>
+          }
+          else
+          {
+               <a style=" width: 157px;" class="btn btn-danger text-uppercase text-end" href="@Url.Action("GuiDenCapHoi","CongVan",new { ma = Session["MaHoi"] })">Quay về</a>
+          }
+
+     </div>
+
+
+
+
+
+
+
+</div>
+
+
+

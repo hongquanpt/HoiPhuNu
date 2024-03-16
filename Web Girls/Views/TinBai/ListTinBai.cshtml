@@ -1,0 +1,74 @@
+﻿
+@{
+     ViewBag.Title = "ListTinBai";
+     Layout = "~/Views/Shared/_LayoutQuanTriCapHV.cshtml";
+     var list = (List<Web_Girls.Models.ModelsView.TinBaiView>)ViewBag.list;
+}
+
+<div style="color: #fff; padding: 16px 30px; margin: -20px -25px 10px; border-radius: 3px 3px 0 0; background: #299be4;">
+     <div class="row">
+          <div class="col-sm-10">
+               <h2 style="font-weight: bold">Danh sách tin bài</h2>
+          </div>
+          <div class="col-sm-2">
+               <a href="@Url.Action("AddTinBai","TinBai")" class="btn btn-primary" style="background-color: #ffb836;"><i class="fas fa-plus"></i> <span style="color: white">Thêm mới</span></a>
+               @*<a href="#" class="btn btn-secondary" style="display: none;"><i class="material-icons">&#xE24D;</i> <span>Xuất Excel</span></a>*@
+               <!--</div>-->
+          </div>
+     </div>
+</div>
+<div class="table-responsive">
+     <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+               <tr>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung tóm tắt</th>                
+                    <th>Lượt xem</th>
+                    <th>Ngày đăng</th>
+                    <th>Người viết</th>
+                    <th>Đơn vị</th>
+                    <th>Loại tin bài</th>
+                    <th></th>
+               </tr>
+          </thead>
+          <tbody>
+               @foreach (var it in list)
+               {
+                    <tr>
+
+                         <td>@it.TieuDe</td>
+                         <td>@it.NoiDungTomTat</td>                     
+                         <td>@it.LuotXem</td>
+                         <td>@it.NgayDang.Value.ToString("dd-MM-yyyy")</td>
+                         <td>@it.NguoiViet</td>
+                         <td>@it.DonVi</td>
+                         <td>@it.LoaiTinBai</td>
+                         <td class="center" style="list-style-type: none;">
+                              <li class="dropdown">
+                                   <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary btn-sm" data-toggle="dropdown" type="button"><i class="fa fa-bars"></i></button>
+                                   <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                             <a class="dropdown-item" href="@Url.Action("SuaTinBai","TinBai", new { id = it.MaTinBai})">
+                                                  <i class="fas fa-edit mr-3"></i>
+                                                     Sửa
+                                             </a>
+                                        </li>
+                                        <li>
+                                             <a class="dropdown-item text-danger" href="#">
+                                                  <i class="fas fa-trash-alt mr-3"></i>
+                                                  @*<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>*@
+                                                    Xóa
+                                             </a>
+                                        </li>
+                                      
+                                   </ul>
+                              </li>
+
+                         </td>
+                    </tr>
+               }
+          </tbody>
+     </table>
+</div>
+
+

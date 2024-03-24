@@ -34,33 +34,36 @@
             <thead>
                 <tr>
                     <th style="display:none">Mã</th>
+                    <th>STT</th>
                     <th>Tên sinh hoạt</th>
                     <th></th>
                 </tr>
 
             </thead>
             <tbody>
+                @{ int i = 1; }
                 @foreach (var it in loaish)
                 {
                     <tr>
                         <td style="display:none">@it.MaLoaiSinhHoat</td>
+                        <td>@(i++)</td>
                         <td>@it.TenSinhHoat</td>
                         <td class="center" style="list-style-type: none;">
                             <li class="dropdown">
                                 <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary btn-sm" data-toggle="dropdown" type="button"><i class="fa fa-bars"></i></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a class="dropdown-item" id="loadModal1" data-toggle="modal" data-target="#showmodal2">
-                                                    <i class="fas fa-edit mr-3"></i>
-                                                    Cập Nhật
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#" onclick="Xoa(@it.MaLoaiSinhHoat)">
-                                                    <i class="fas fa-trash-alt mr-3"></i>
-                                                    Xóa
-                                                </a>
-                                            </li>
+                                    <li>
+                                        <a class="dropdown-item" id="loadModal1" data-toggle="modal" data-target="#showmodal2">
+                                            <i class="fas fa-edit mr-3"></i>
+                                            Cập Nhật
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" href="#" onclick="Xoa(@it.MaLoaiSinhHoat)">
+                                            <i class="fas fa-trash-alt mr-3"></i>
+                                            Xóa
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 

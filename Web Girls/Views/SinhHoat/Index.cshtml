@@ -48,10 +48,12 @@
 
             </thead>
             <tbody>
+                @{ int i = 1; }
                 @foreach (var it in sh)
                 {
                     <tr>
                         <td style="display:none">@it.Ma</td>
+                        <td>@(i++)</td>
                         <td>@it.TenSinhHoat</td>
                         <td>@it.NgaySinhHoat.Value.ToString("dd/MM/yyyy")</td>
                         @if (it.SoLuongVang == null)

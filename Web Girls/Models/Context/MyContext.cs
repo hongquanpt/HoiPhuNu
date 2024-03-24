@@ -28,6 +28,8 @@ namespace Web_Girls.Models.Context
         public virtual DbSet<HoanCanhGD> HoanCanhGDs { get; set; }
         public virtual DbSet<HoatDong> HoatDongs { get; set; }
         public virtual DbSet<HoatDong_HoiVien> HoatDong_HoiVien { get; set; }
+        public virtual DbSet<SinhHoat> SinhHoats { get; set; }
+        public virtual DbSet<SinhHoat_Vang> SinhHoat_Vang { get; set; }
         public virtual DbSet<HoiPhuNu> HoiPhuNus { get; set; }
         public virtual DbSet<HoiVien> HoiViens { get; set; }
         public virtual DbSet<HoiVien_ChiBo> HoiVien_ChiBo { get; set; }
@@ -41,6 +43,7 @@ namespace Web_Girls.Models.Context
         public virtual DbSet<LichSuTrinhDo> LichSuTrinhDoes { get; set; }
         public virtual DbSet<LoaiDangVien> LoaiDangViens { get; set; }
         public virtual DbSet<LoaiHoatDong> LoaiHoatDongs { get; set; }
+        public virtual DbSet<LoaiSinhHoat> LoaiSinhHoats { get; set; }
         public virtual DbSet<LoaiHoiVien> LoaiHoiViens { get; set; }
         public virtual DbSet<LoaiLDST> LoaiLDSTs { get; set; }
         public virtual DbSet<LoaiTinBai> LoaiTinBais { get; set; }
@@ -117,6 +120,10 @@ namespace Web_Girls.Models.Context
                 .Property(e => e.MaHV)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<SinhHoat_Vang>()
+               .Property(e => e.MaHV)
+               .IsUnicode(false);
+
             modelBuilder.Entity<HoiPhuNu>()
                 .Property(e => e.MaHV)
                 .IsUnicode(false);
@@ -170,6 +177,11 @@ namespace Web_Girls.Models.Context
 
             modelBuilder.Entity<HoiVien>()
                 .HasMany(e => e.HoatDong_HoiVien)
+                .WithOptional(e => e.HoiVien)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<HoiVien>()
+                .HasMany(e => e.SinhHoat_Vang)
                 .WithOptional(e => e.HoiVien)
                 .WillCascadeOnDelete();
 
@@ -283,6 +295,11 @@ namespace Web_Girls.Models.Context
                 .HasMany(e => e.HoatDongs)
                 .WithOptional(e => e.LoaiHoatDong)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<LoaiSinhHoat>()
+              .HasMany(e => e.SinhHoats)
+              .WithOptional(e => e.LoaiSinhHoat)
+              .WillCascadeOnDelete();
 
             modelBuilder.Entity<LoaiHoiVien>()
                 .HasMany(e => e.HoiViens)

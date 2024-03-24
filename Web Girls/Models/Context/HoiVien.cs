@@ -19,6 +19,7 @@ namespace Web_Girls.Models.Context
             DanhSachBieuDuongPTTDs = new HashSet<DanhSachBieuDuongPTTD>();
             HoanCanhGDs = new HashSet<HoanCanhGD>();
             HoatDong_HoiVien = new HashSet<HoatDong_HoiVien>();
+            SinhHoat_Vang = new HashSet<SinhHoat_Vang>();
             HoiPhuNus = new HashSet<HoiPhuNu>();
             HoiVien_ChiBo1 = new HashSet<HoiVien_ChiBo>();
             HoiVien_DangUy1 = new HashSet<HoiVien_DangUy>();
@@ -117,6 +118,9 @@ namespace Web_Girls.Models.Context
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoatDong_HoiVien> HoatDong_HoiVien { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinhHoat_Vang> SinhHoat_Vang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoiPhuNu> HoiPhuNus { get; set; }

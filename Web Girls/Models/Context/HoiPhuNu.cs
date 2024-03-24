@@ -15,6 +15,7 @@ namespace Web_Girls.Models.Context
             BCH_HPN = new HashSet<BCH_HPN>();
             CongVanBaoCaos = new HashSet<CongVanBaoCao>();
             HoatDongs = new HashSet<HoatDong>();
+            SinhHoats = new HashSet<SinhHoat>();
             HoiViens = new HashSet<HoiVien>();
             NoiNhans = new HashSet<NoiNhan>();
         }
@@ -38,6 +39,8 @@ namespace Web_Girls.Models.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoatDong> HoatDongs { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinhHoat> SinhHoats { get; set; }
         public virtual HoiVien HoiVien { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

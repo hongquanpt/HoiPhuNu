@@ -13,7 +13,7 @@ namespace Web_Girls.Controllers
     {
         MyContext obj = new MyContext();
 
-        public ActionResult Index(int ma)
+        public ActionResult Index(int ma, string id)
         {
             if (ma == 0)
             {
@@ -56,8 +56,56 @@ namespace Web_Girls.Controllers
                 ViewBag.hoivienList = hoivienList;
                 return View();
             }
-            else
+            else if ( ma == 3 )
             {
+                {
+                    var hoivien = obj.HoiViens.FirstOrDefault(i => i.MaHV == id);
+                    var hoivienTemp = hoivien; 
+                    var hoivienList = (from hv in obj.HoiViens
+                                       join hpn in obj.HoiPhuNus on hv.MaHPN equals hpn.MaHPN
+                                       where hv.MaHPN == ma
+                                       select new HoiVienHPNView()
+                                       {
+                                           MaHV = hv.MaHV,
+                                           TenHV = hv.TenHV,
+                                           NgaySinh = hv.NgaySinh,
+                                       }).ToList();
+
+                    var sinhhoat = (from a in obj.SinhHoats
+                                    join b in obj.LoaiSinhHoats on a.MaLoaiSinhHoat equals b.MaLoaiSinhHoat
+                                    join c in obj.HoiPhuNus on a.MaHPN equals c.MaHPN
+                                    where a.MaHPN == hoivienTemp.MaHPN || a.MaHPN == 0
+                                    orderby a.NgaySinhHoat descending
+                                    select new SinhHoatView()
+                                    {
+
+                                        Ma = a.MaSinhHoat,
+                                        TenSinhHoat = b.TenSinhHoat,
+                                        NgaySinhHoat = a.NgaySinhHoat,
+                                        SoLuongVang = a.SoLuongVang,
+                                        MaHoi = a.MaHPN,
+                                        MaLoaiSinhHoat = b.MaLoaiSinhHoat,
+                                        NoiDung = a.NoiDung,
+                                    }).ToList();
+                    foreach (var item in sinhhoat)
+                    {
+                        if (item.MaHoi == 0)
+                        {
+                            item.DVToChuc = "HPN Học viện";
+                        }
+                        else
+                        {
+                            item.DVToChuc = obj.HoiPhuNus.Find(item.MaHoi).TenHPN;
+                        }
+                    }
+                    var loaisinhhoat = obj.LoaiSinhHoats.ToList();
+                    ViewBag.loaisinhhoat = loaisinhhoat;
+                    ViewBag.sinhhoat = sinhhoat;
+                    ViewBag.hoivienList = hoivienList;
+                    return View();
+                }
+            }
+             else {
                  var hoivienList = (from hv in obj.HoiViens
                                     join hpn in obj.HoiPhuNus on hv.MaHPN equals hpn.MaHPN
                                     where hv.MaHPN == ma
@@ -115,7 +163,7 @@ namespace Web_Girls.Controllers
 
 
         [HttpPost]
-        public ActionResult ThemSinhHoat(int TenSH, DateTime NgaySH, int? SoLuongVang, string noidung, int MaHPN)
+        public ActionResult ThemSinhHoat(int TenSH, DateTime NgaySH, string noidung, int MaHPN)
         {
             try
             {
@@ -126,7 +174,7 @@ namespace Web_Girls.Controllers
                     sh.MaLoaiSinhHoat = TenSH;
                     sh.NgaySinhHoat = NgaySH;
                     sh.NoiDung = noidung;
-                    sh.SoLuongVang = SoLuongVang;
+                    sh.SoLuongVang = 0;
                     obj.SinhHoats.Add(sh);
                     obj.SaveChanges();
                 }
@@ -137,7 +185,7 @@ namespace Web_Girls.Controllers
                     sh.MaLoaiSinhHoat = TenSH;
                     sh.NgaySinhHoat = NgaySH;
                     sh.NoiDung = noidung;
-                    sh.SoLuongVang = SoLuongVang;
+                    sh.SoLuongVang = 0;
                     obj.SinhHoats.Add(sh);
                     obj.SaveChanges();
                 }
@@ -169,7 +217,6 @@ namespace Web_Girls.Controllers
             var shSua = obj.SinhHoats.Find(sh.MaSinhHoat);
             shSua.NgaySinhHoat = sh.NgaySinhHoat;
             shSua.NoiDung = sh.NoiDung;
-            shSua.SoLuongVang = sh.SoLuongVang;
             obj.SaveChanges();
             return RedirectToAction("Index", new { ma = MaHoi });
         }
@@ -257,7 +304,100 @@ namespace Web_Girls.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult ThemHoiVienVang(int ma, int mahoi)
+        {
+            var sh = obj.SinhHoats.Find(ma);
+            var listHV = (from a in obj.HoiViens
+                          join b in obj.SinhHoat_Vang on a.MaHV equals b.MaHV
+                          join c in obj.SinhHoats on b.MaSinhHoat equals c.MaSinhHoat
+                          where b.MaSinhHoat == ma
+                          select new HoiVienVangView()
+                          {
+                              MaSH_V = b.MaSH_V,
+                              TenHV = a.TenHV,
+                              NgaySinh = a.NgaySinh,
+                              SDT = a.SDT,
+                              MaHV = b.MaHV,
+                              MaSinhHoat = b.MaSinhHoat
+                          }).ToList();
 
+            if (mahoi != 0)
+            {
+                var hvHoi = (from a in obj.HoiViens
+                         join b in obj.HoiViens on a.MaHV equals b.MaHV
+                         where b.MaHPN == mahoi
+                         select a).ToList();
+                ViewBag.hvHoi = hvHoi;
+            }
+            else
+            {
+                var hvHoi = obj.HoiViens.ToList();
+                ViewBag.hvHoi = hvHoi;
+            }
+
+            ViewBag.hv = listHV;
+            ViewBag.sh = sh;
+            string successMessage = TempData["Loi"] as string;
+            string xoa = TempData["Xoa"] as string;
+            ViewBag.message = successMessage;
+            ViewBag.xoa = xoa;
+            return View();
+        }
+        public ActionResult ThemVang(int MaSinhHoat, string MaHV)
+        {
+            var shvang = obj.SinhHoat_Vang.Where(s => s.MaSinhHoat == MaSinhHoat).ToList();
+            var shoat = obj.SinhHoats.Find(MaSinhHoat);
+            try
+            {
+                foreach (var item in shvang)
+                {
+                    if (item.MaHV == MaHV)
+                    {
+                        TempData["Loi"] = "Hội viên bạn vừa chọn đã vắng.";
+                        return RedirectToAction("ThemHoiVienVang", new { ma = MaSinhHoat, mahoi = Int32.Parse(Session["MaHoi"].ToString()) });
+                    }
+                }
+                SinhHoat_Vang shv = new SinhHoat_Vang();
+                shv.MaHV = MaHV;
+                shoat.SoLuongVang = shvang.Count + 1;
+                shv.MaSinhHoat = MaSinhHoat;
+                obj.SinhHoat_Vang.Add(shv);
+                obj.SaveChanges();
+                return Json(new
+                {
+                    status = true
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new
+                {
+                    status = false
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult XoaVang(int ma, int MaSinhHoat)
+        {
+            try
+            {
+                var sinhhoatvang = obj.SinhHoat_Vang.Find(ma);
+                var shoat = obj.SinhHoats.Find(MaSinhHoat);
+                obj.SinhHoat_Vang.Remove(sinhhoatvang);
+                shoat.SoLuongVang = shoat.SoLuongVang - 1;
+                obj.SaveChanges();
+                return Json(new
+                {
+                    status = true,
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new
+                {
+                    status = false,
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 
 }

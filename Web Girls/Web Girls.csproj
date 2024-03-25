@@ -214,6 +214,7 @@
     <Compile Include="Models\ModelsView\KyLuatView.cs" />
     <Compile Include="Models\ModelsView\LaoDongSangTaoView.cs" />
     <Compile Include="Models\ModelsView\ThamGiaSinhHoatView.cs" />
+    <Compile Include="Models\ModelsView\HoiVienVangView.cs" />
     <Compile Include="Models\ModelsView\ThongKeKTKL.cs" />
     <Compile Include="Models\ModelsView\ThongKeLDST.cs" />
     <Compile Include="Models\ModelsView\XacNhanHoiVienChiBo.cs" />
@@ -2420,6 +2421,7 @@
     <Content Include="Views\SinhHoat\SuaSinhHoat.cshtml" />
     <Content Include="Views\SinhHoat\IndexLoai.cshtml" />
     <Content Include="Views\SinhHoat\SuaLoaiSinhHoat.cshtml" />
+    <Content Include="Views\SinhHoat\ThemHoiVienVang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

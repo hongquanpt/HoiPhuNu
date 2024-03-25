@@ -33,244 +33,253 @@
      <div id="wrapper">
 
           <!-- Sidebar -->
-          <ul style="height: 100vh; position: sticky; top: 0; left: 0;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion no-print" id="accordionSidebar">
+         <ul style="height: 100vh; position: sticky; top: 0; left: 0;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion no-print" id="accordionSidebar">
 
-               <!-- Sidebar - Brand -->
-               @*<a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("TrangQuanTriCapHV","Account")">
-               <div class="sidebar-brand-icon rotate-n-15 no-print">
-                    <i class="fas fa-laugh-wink"></i>
-               </div>
-               <div class="sidebar-brand-text mx-3 no-print">SB Admin <sup>2</sup></div>
-          </a>*@
-               <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("TrangQuanTriCapHoi", "Account")">
-                    <img class="no-print" style="width: 69px" src="~/Template/images/Logo_MTA.png" alt="">
-                    <!--<div class="sidebar-brand-icon rotate-n-15 no-print">-->
-                    @*<img src="~/Template/images/Logo_MTA.png" alt="">*@
-                    @*<i class="fas fa-laugh-wink"></i>*@
-                    <!--</div>-->
-                    <div class="sidebar-brand-text mx-3 no-print">@*SB Admin*@ HPN-HVKTQS @*<sup>2</sup>*@</div>
-               </a>
+             <!-- Sidebar - Brand -->
+             @*<a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("TrangQuanTriCapHV","Account")">
+             <div class="sidebar-brand-icon rotate-n-15 no-print">
+                  <i class="fas fa-laugh-wink"></i>
+             </div>
+             <div class="sidebar-brand-text mx-3 no-print">SB Admin <sup>2</sup></div>
+        </a>*@
+             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("TrangQuanTriCapHoi", "Account")">
+                 <img class="no-print" style="width: 69px" src="~/Template/images/Logo_MTA.png" alt="">
+                 <!--<div class="sidebar-brand-icon rotate-n-15 no-print">-->
+                 @*<img src="~/Template/images/Logo_MTA.png" alt="">*@
+                 @*<i class="fas fa-laugh-wink"></i>*@
+                 <!--</div>-->
+                 <div class="sidebar-brand-text mx-3 no-print">@*SB Admin*@ HPN-HVKTQS @*<sup>2</sup>*@</div>
+             </a>
 
-               <!-- Divider -->
-               <hr class="sidebar-divider my-0  no-print">
+             <!-- Divider -->
+             <hr class="sidebar-divider my-0  no-print">
 
-               <!-- Nav Item - Dashboard -->
-               <li class="nav-item active no-print">
-                    <a class="nav-link" href="@Url.Action("ThongtinHoiVien","ChiHoi", new { id = Session["MaHoi"] })">
-                         <i class="fas fa-users"></i>
-                         <span>Danh sách hội viên</span>
-                    </a>
-               </li>
-               <li class="nav-item active no-print">
-                    <a class="nav-link" href="@Url.Action("HoiVienDang","HoiVien", new { ma = Session["MaHoi"] })">
-                         <i class="fas fa-users"></i>
-                         <span>Danh sách đảng viên</span>
-                    </a>
-               </li>
+             <!-- Nav Item - Dashboard -->
+             <li class="nav-item active no-print">
+                 <a class="nav-link" href="@Url.Action("ThongtinHoiVien","ChiHoi", new { id = Session["MaHoi"] })">
+                     <i class="fas fa-users"></i>
+                     <span>Danh sách hội viên</span>
+                 </a>
+             </li>
+             <li class="nav-item active no-print">
+                 <a class="nav-link" href="@Url.Action("HoiVienDang","HoiVien", new { ma = Session["MaHoi"] })">
+                     <i class="fas fa-users"></i>
+                     <span>Danh sách đảng viên</span>
+                 </a>
+             </li>
 
-               <!-- Divider -->
-               <hr class="sidebar-divider no-print">
+             <!-- Divider -->
+             <hr class="sidebar-divider no-print">
 
-               <!-- Heading -->
-               <div class="sidebar-heading no-print">
-                    Quản lý chung
-               </div>
+             <!-- Heading -->
+             <div class="sidebar-heading no-print">
+                 Quản lý chung
+             </div>
 
-               <!-- Nav Item - Pages Collapse Menu -->
-               <!--<li class="nav-item no-print">
-     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Quản lý hội viên</span>
-     </a>
-     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">-->
-               @*<h6 class="collapse-header">Custom Components:</h6>*@
-               <!--<a class="collapse-item" href="@Url.Action("TatCaHoiVien","HoiVien")">Danh sách hội viên</a>
-                    <a class="collapse-item" href="@Url.Action("AddHoiVien","HoiVien")">Thêm mới hội viên</a>
-               </div>
-          </div>
-     </li>-->
-               <!-- Nav Item - Utilities Collapse Menu -->
-               <!--<li class="nav-item no-print">
-     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Quản lý tài khoản</span>
-     </a>
-     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">-->
-               @*<h6 class="collapse-header">Custom Utilities:</h6>*@
-               <!--<a class="collapse-item" href="@Url.Action("TatCaTaiKhoan","Account")">Danh sách tài khoản</a>-->
-               @*<a class="collapse-item" href="utilities-border.html">Borders</a>
-          <a class="collapse-item" href="utilities-animation.html">Animations</a>
-          <a class="collapse-item" href="utilities-other.html">Other</a>*@
-               <!--</div>
-          </div>
-     </li>-->
-               <li class="nav-item no-print">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
-                       aria-expanded="true" aria-controls="collapseUtilities">
-                         <i class="fas fa-fw fa-wrench"></i>
-                         <span>Quản lý khen thưởng,KL</span>
-                    </a>
-                    <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
-                         data-parent="#accordionSidebar">
-                         <div class="bg-white py-2 collapse-inner rounded">
-                              @*<h6 class="collapse-header">Custom Utilities:</h6>*@
-                              <a class="collapse-item" href="@Url.Action("KhenThuong","KTKL",new { ma = Session["MaHoi"] })">Khen thưởng</a>
-                              <a class="collapse-item" href="@Url.Action("KyLuat","KTKL",new { ma = Session["MaHoi"]  })">Kỷ luật</a>
-                              @*<a class="collapse-item" href="utilities-border.html">Borders</a>
-                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                         <a class="collapse-item" href="utilities-other.html">Other</a>*@
-                         </div>
-                    </div>
-               </li>
-               <li class="nav-item no-print">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
-                       aria-expanded="true" aria-controls="collapseUtilities">
-                         <i class="fas fa-fw fa-wrench"></i>
-                         <span>Xác nhận thông tin</span>
-                    </a>
-                    <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities"
-                         data-parent="#accordionSidebar">
-                         <div class="bg-white py-2 collapse-inner rounded">
-                              @*<h6 class="collapse-header">Custom Utilities:</h6>*@
-                              <a class="collapse-item" href="@Url.Action("CapBacChuaXacNhan","HoiVien",new { ma = Session["MaHoi"] })">Xác nhận cấp bậc</a>
-                              <a class="collapse-item" href="@Url.Action("ChucDanhChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận chức danh</a>
-                              <a class="collapse-item" href="@Url.Action("TrinhDoChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận trình độ</a>
-                              <a class="collapse-item" href="@Url.Action("XacNhanKhenThuong", "KTKL", new { ma = Session["MaHoi"]})">Xác nhận khen thưởng</a>
-                              <a class="collapse-item" href="@Url.Action("LDSTChuaXacNhan","LDST",new { ma = Session["MaHoi"]  })">Xác nhận LĐST</a>
-                              <a class="collapse-item" href="@Url.Action("HoiVienChiBoChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận chức vụ chi bộ</a>
-                              <a class="collapse-item" href="@Url.Action("HoiVienDangUyChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận chức vụ đảng ủy</a>
+             <!-- Nav Item - Pages Collapse Menu -->
+             <!--<li class="nav-item no-print">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+       aria-expanded="true" aria-controls="collapseTwo">
+         <i class="fas fa-fw fa-cog"></i>
+         <span>Quản lý hội viên</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">-->
+             @*<h6 class="collapse-header">Custom Components:</h6>*@
+             <!--<a class="collapse-item" href="@Url.Action("TatCaHoiVien","HoiVien")">Danh sách hội viên</a>
+                   <a class="collapse-item" href="@Url.Action("AddHoiVien","HoiVien")">Thêm mới hội viên</a>
+              </div>
+         </div>
+    </li>-->
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <!--<li class="nav-item no-print">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+       aria-expanded="true" aria-controls="collapseUtilities">
+         <i class="fas fa-fw fa-wrench"></i>
+         <span>Quản lý tài khoản</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+         data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">-->
+             @*<h6 class="collapse-header">Custom Utilities:</h6>*@
+             <!--<a class="collapse-item" href="@Url.Action("TatCaTaiKhoan","Account")">Danh sách tài khoản</a>-->
+             @*<a class="collapse-item" href="utilities-border.html">Borders</a>
+        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+        <a class="collapse-item" href="utilities-other.html">Other</a>*@
+             <!--</div>
+         </div>
+    </li>-->
+             <li class="nav-item no-print">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     <i class="fas fa-fw fa-wrench"></i>
+                     <span>Quản lý khen thưởng,KL</span>
+                 </a>
+                 <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
+                      data-parent="#accordionSidebar">
+                     <div class="bg-white py-2 collapse-inner rounded">
+                         @*<h6 class="collapse-header">Custom Utilities:</h6>*@
+                         <a class="collapse-item" href="@Url.Action("KhenThuong","KTKL",new { ma = Session["MaHoi"] })">Khen thưởng</a>
+                         <a class="collapse-item" href="@Url.Action("KyLuat","KTKL",new { ma = Session["MaHoi"]  })">Kỷ luật</a>
+                         @*<a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>*@
+                     </div>
+                 </div>
+             </li>
+             <li class="nav-item no-print">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     <i class="fas fa-fw fa-wrench"></i>
+                     <span>Xác nhận thông tin</span>
+                 </a>
+                 <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities"
+                      data-parent="#accordionSidebar">
+                     <div class="bg-white py-2 collapse-inner rounded">
+                         @*<h6 class="collapse-header">Custom Utilities:</h6>*@
+                         <a class="collapse-item" href="@Url.Action("CapBacChuaXacNhan","HoiVien",new { ma = Session["MaHoi"] })">Xác nhận cấp bậc</a>
+                         <a class="collapse-item" href="@Url.Action("ChucDanhChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận chức danh</a>
+                         <a class="collapse-item" href="@Url.Action("TrinhDoChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận trình độ</a>
+                         <a class="collapse-item" href="@Url.Action("XacNhanKhenThuong", "KTKL", new { ma = Session["MaHoi"]})">Xác nhận khen thưởng</a>
+                         <a class="collapse-item" href="@Url.Action("LDSTChuaXacNhan","LDST",new { ma = Session["MaHoi"]  })">Xác nhận LĐST</a>
+                         <a class="collapse-item" href="@Url.Action("HoiVienChiBoChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận chức vụ chi bộ</a>
+                         <a class="collapse-item" href="@Url.Action("HoiVienDangUyChuaXacNhan","HoiVien",new { ma = Session["MaHoi"]  })">Xác nhận chức vụ đảng ủy</a>
 
-                              @*<a class="collapse-item" href="utilities-border.html">Borders</a>
-                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                         <a class="collapse-item" href="utilities-other.html">Other</a>*@
-                         </div>
-                    </div>
-               </li>
-               <li class="nav-item no-print">
-                    <a class="nav-link" href="@Url.Action("Index", "HoatDong",new { ma = Session["MaHoi"]})">
-                         <i class="fas fa-fw fa-table"></i>
-                         <span>Quản lý hoạt động</span>
-                    </a>
-               </li>
-               <li class="nav-item no-print">
-                    <a class="nav-link" href="@Url.Action("DanhSachPTTD", "HoatDong")">
-                         <i class="fas fa-fw fa-table"></i>
-                         <span>Danh sách PTTĐ</span>
-                    </a>
-               </li>
-               <li class="nav-item no-print">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4"
-                       aria-expanded="true" aria-controls="collapseUtilities">
-                         <i class="fas fa-fw fa-wrench"></i>
-                         <span>Gửi,nhận văn bản</span>
-                    </a>
-                    <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities"
-                         data-parent="#accordionSidebar">
-                         <div class="bg-white py-2 collapse-inner rounded">
-                              @*<h6 class="collapse-header">Custom Utilities:</h6>*@
-                              <a class="collapse-item" href="@Url.Action("DaGui","CongVan",new { ma = Session["MaHoi"] })">Văn bản đã gửi</a>
-                              <a class="collapse-item" href="@Url.Action("GuiDenCapHoi","CongVan",new { ma = Session["MaHoi"]  })">Văn bản gửi đến</a>
-                              @*<a class="collapse-item" href="utilities-border.html">Borders</a>
-                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                         <a class="collapse-item" href="utilities-other.html">Other</a>*@
-                         </div>
-                    </div>
-               </li>
-               <li class="nav-item no-print">
-                    <a class="nav-link" href="@Url.Action("Index", "LDST",new { ma = Session["MaHoi"] })">
-                         <i class="fas fa-fw fa-table"></i>
-                         <span>Danh sách LSDT</span>
-                    </a>
-               </li>
-               <li class="nav-item no-print">
-                    <a class="nav-link" href="@Url.Action("HoanCanhHV", "HoiVien", new { ma = Session["MaHoi"]})">
-                         <i class="fas fa-fw fa-table"></i>
-                         <span>Hoàn cảnh hội viên</span>
-                    </a>
-               </li>
+                         @*<a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>*@
+                     </div>
+                 </div>
+             </li>
+             <li class="nav-item no-print">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities6"
+                     aria-expanded="true" aria-controls="collapseUtilities">
+                   <i class="fas fa-fw fa-table"></i>
+                     <span>Quản lý hoạt động</span>
+                 </a>
+                 <div id="collapseUtilities6" class="collapse" aria-labelledby="headingUtilities"
+                      data-parent="#accordionSidebar">
+                     <div class="bg-white py-2 collapse-inner rounded">
+                         <a class="collapse-item" href="@Url.Action("Index", "HoatDong",new { ma = Session["MaHoi"] })">Quản lý hoạt động</a>
+                         <a class="collapse-item" href="@Url.Action("IndexLoai", "SinhHoat",new { ma = Session["MaHoi"] })">Quản lý các loại sinh hoạt</a>
+                         <a class="collapse-item" href="@Url.Action("Index", "SinhHoat",new { ma = Session["MaHoi"] })">Quản lý lịch sử sinh hoạt</a>
+                     </div>
+                 </div>
+             </li>
+             <li class="nav-item no-print">
+                 <a class="nav-link" href="@Url.Action("DanhSachPTTD", "HoatDong")">
+                     <i class="fas fa-fw fa-table"></i>
+                     <span>Danh sách PTTĐ</span>
+                 </a>
+             </li>
+             <li class="nav-item no-print">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     <i class="fas fa-fw fa-wrench"></i>
+                     <span>Gửi,nhận văn bản</span>
+                 </a>
+                 <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities"
+                      data-parent="#accordionSidebar">
+                     <div class="bg-white py-2 collapse-inner rounded">
+                         @*<h6 class="collapse-header">Custom Utilities:</h6>*@
+                         <a class="collapse-item" href="@Url.Action("DaGui","CongVan",new { ma = Session["MaHoi"] })">Văn bản đã gửi</a>
+                         <a class="collapse-item" href="@Url.Action("GuiDenCapHoi","CongVan",new { ma = Session["MaHoi"]  })">Văn bản gửi đến</a>
+                         @*<a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>*@
+                     </div>
+                 </div>
+             </li>
+             <li class="nav-item no-print">
+                 <a class="nav-link" href="@Url.Action("Index", "LDST",new { ma = Session["MaHoi"] })">
+                     <i class="fas fa-fw fa-table"></i>
+                     <span>Danh sách LSDT</span>
+                 </a>
+             </li>
+             <li class="nav-item no-print">
+                 <a class="nav-link" href="@Url.Action("HoanCanhHV", "HoiVien", new { ma = Session["MaHoi"]})">
+                     <i class="fas fa-fw fa-table"></i>
+                     <span>Hoàn cảnh hội viên</span>
+                 </a>
+             </li>
 
-               <!-- Divider -->
-               <hr class="sidebar-divider no-print">
+             <!-- Divider -->
+             <hr class="sidebar-divider no-print">
 
-               <!-- Heading -->
-               <div class="sidebar-heading no-print">
-                    Thống kê, báo cáo
-               </div>
-               <li class="nav-item no-print">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities5"
-                       aria-expanded="true" aria-controls="collapseUtilities">
-                         <i class="fas fa-fw fa-chart-area"></i>
-                         <span>Thống kê</span>
-                    </a>
-                    <div id="collapseUtilities5" class="collapse" aria-labelledby="headingUtilities"
-                         data-parent="#accordionSidebar">
-                         <div class="bg-white py-2 collapse-inner rounded">
-                              @*<h6 class="collapse-header">Custom Utilities:</h6>*@
-                              <a class="collapse-item" href="@Url.Action("Index", "ThongKe")">Thống kê chung</a>
-                              <a class="collapse-item" href="@Url.Action("ThongKeHCGD","ThongKe")">Thống kê hoàn cảnh GĐ</a>
-                              <a class="collapse-item" href="@Url.Action("ThongKeLDST","ThongKe")">Thống kê LDST</a>
-                              <a class="collapse-item" href="@Url.Action("ThongKeKTKL","ThongKe")">Thống kê KTKL</a>
-                              @*<a class="collapse-item" href="utilities-border.html">Borders</a>
-                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                         <a class="collapse-item" href="utilities-other.html">Other</a>*@
-                         </div>
-                    </div>
-               </li>
+             <!-- Heading -->
+             <div class="sidebar-heading no-print">
+                 Thống kê, báo cáo
+             </div>
+             <li class="nav-item no-print">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities5"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     <i class="fas fa-fw fa-chart-area"></i>
+                     <span>Thống kê</span>
+                 </a>
+                 <div id="collapseUtilities5" class="collapse" aria-labelledby="headingUtilities"
+                      data-parent="#accordionSidebar">
+                     <div class="bg-white py-2 collapse-inner rounded">
+                         @*<h6 class="collapse-header">Custom Utilities:</h6>*@
+                         <a class="collapse-item" href="@Url.Action("Index", "ThongKe")">Thống kê chung</a>
+                         <a class="collapse-item" href="@Url.Action("ThongKeHCGD","ThongKe")">Thống kê hoàn cảnh GĐ</a>
+                         <a class="collapse-item" href="@Url.Action("ThongKeLDST","ThongKe")">Thống kê LDST</a>
+                         <a class="collapse-item" href="@Url.Action("ThongKeKTKL","ThongKe")">Thống kê KTKL</a>
+                         @*<a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>*@
+                     </div>
+                 </div>
+             </li>
 
-               <!-- Nav Item - Pages Collapse Menu -->
-               <!--<li class="nav-item no-print">
-     <a class="nav-link collapsed" href="@Url.Action("Index","ThongKe")">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Thống kê</span>
-     </a>-->
-               @*<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-               <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
-               </div>
-          </div>*@
-               <!--</li>-->
-               <!-- Nav Item - Charts -->
-               <!--<li class="nav-item no-print">
-          <a class="nav-link" href="@Url.Action("Index","Report")">
-               <i class="fas fa-fw fa-chart-area"></i>
-               <span>Charts</span>
-          </a>
-     </li>-->
-               <!-- Nav Item - Tables -->
-               <!--<li class="nav-item no-print">
-          <a class="nav-link" href="tables.html">
-               <i class="fas fa-fw fa-table"></i>
-               <span>Tables</span>
-          </a>
-     </li>-->
-               <!-- Divider -->
-               <hr class="sidebar-divider d-none d-md-block no-print">
+             <!-- Nav Item - Pages Collapse Menu -->
+             <!--<li class="nav-item no-print">
+    <a class="nav-link collapsed" href="@Url.Action("Index","ThongKe")">
+         <i class="fas fa-fw fa-folder"></i>
+         <span>Thống kê</span>
+    </a>-->
+             @*<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+             <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Login Screens:</h6>
+                  <a class="collapse-item" href="login.html">Login</a>
+                  <a class="collapse-item" href="register.html">Register</a>
+                  <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                  <div class="collapse-divider"></div>
+                  <h6 class="collapse-header">Other Pages:</h6>
+                  <a class="collapse-item" href="404.html">404 Page</a>
+                  <a class="collapse-item" href="blank.html">Blank Page</a>
+             </div>
+        </div>*@
+             <!--</li>-->
+             <!-- Nav Item - Charts -->
+             <!--<li class="nav-item no-print">
+         <a class="nav-link" href="@Url.Action("Index","Report")">
+              <i class="fas fa-fw fa-chart-area"></i>
+              <span>Charts</span>
+         </a>
+    </li>-->
+             <!-- Nav Item - Tables -->
+             <!--<li class="nav-item no-print">
+         <a class="nav-link" href="tables.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Tables</span>
+         </a>
+    </li>-->
+             <!-- Divider -->
+             <hr class="sidebar-divider d-none d-md-block no-print">
 
-               <!-- Sidebar Toggler (Sidebar) -->
-               <div class="text-center d-none d-md-inline no-print">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-               </div>
+             <!-- Sidebar Toggler (Sidebar) -->
+             <div class="text-center d-none d-md-inline no-print">
+                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
+             </div>
 
-               <!-- Sidebar Message -->
-               @*<div class="sidebar-card d-none d-lg-flex no-print no-print">
-               <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-               <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-               <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-          </div>*@
+             <!-- Sidebar Message -->
+             @*<div class="sidebar-card d-none d-lg-flex no-print no-print">
+             <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+             <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+             <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+        </div>*@
 
-          </ul>
+         </ul>
           <!-- End of Sidebar -->
           <!-- Content Wrapper -->
           <div id="content-wrapper" class="d-flex flex-column">

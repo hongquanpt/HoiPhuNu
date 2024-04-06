@@ -10,7 +10,6 @@ using Xceed.Document.NET;
 using Web_Girls.Models.Context;
 using Web_Girls.Models.ModelsView;
 using System.Data.SqlClient;
-using Xceed.Document.NET;
 using System.Text;
 
 namespace Web_Girls.Controllers
@@ -332,59 +331,81 @@ namespace Web_Girls.Controllers
         // Helper method to convert DOCX to HTML
         private void ConvertDocxToHtml(string inputDocxPath, string outputHtmlPath)
         {
-            // Load the DOCX document
             using (DocX doc = DocX.Load(inputDocxPath))
             {
-                // Initialize HTML content builder
                 StringBuilder htmlBuilder = new StringBuilder();
 
-                // Iterate through each table in the document
+                // Start HTML document with <html>, <head>, and <body> tags
+                htmlBuilder.Append("<!DOCTYPE html><html><head>");
+                // Add CSS for table alignment, borders, and equal width for first row cells
+                htmlBuilder.Append("<style>");
+                htmlBuilder.Append("table { width: 100%; border-collapse: collapse; }");
+                htmlBuilder.Append("th, td { padding: 8px; text-align: center; }");
+                htmlBuilder.Append("tr:not(:first-child) th, tr:not(:first-child) td { border: 1px solid black; }");
+                htmlBuilder.Append("</style>");
+                htmlBuilder.Append("</head><body>");
+
                 foreach (Table table in doc.Tables)
                 {
-                    // Start HTML table tag
-                    htmlBuilder.Append("<table border='1'>");
+                    // Calculate the total width of all cells in the first row
+                    double totalWidth = 0;
 
-                    // Iterate through each row in the table
+                    // Iterate through the cells in the first row to calculate total width
+                    foreach (Cell cell in table.Rows.First().Cells)
+                    {
+                        totalWidth += cell.Width;
+                    }
+
+                    htmlBuilder.Append("<table>");
+
+                    int columnIndex = 0; // Variable to track the column index
+
                     foreach (Row row in table.Rows)
                     {
-                        // Start HTML table row tag
                         htmlBuilder.Append("<tr>");
 
-                        // Iterate through each cell in the row
                         foreach (Cell cell in row.Cells)
                         {
-                            // Start HTML table cell tag
-                            htmlBuilder.Append("<td>");
+                            // Calculate the percentage width of each cell
+                            double cellWidthPercentage;
 
-                            // Iterate through each paragraph in the cell
+                           
+                                // Calculate width percentage based on original width
+                                cellWidthPercentage = (cell.Width / totalWidth) * 100;
+                          
+
+                            htmlBuilder.Append("<td style=\"width:200px ");
+                            htmlBuilder.Append(cellWidthPercentage.ToString("0.##")); // Format to two decimal places
+                            htmlBuilder.Append("%;\">");
+
                             foreach (Xceed.Document.NET.Paragraph paragraph in cell.Paragraphs)
                             {
-                                // Append text content of the paragraph as HTML
                                 htmlBuilder.Append("<p>");
                                 htmlBuilder.Append(paragraph.Text);
                                 htmlBuilder.Append("</p>");
                             }
 
-                            // End HTML table cell tag
                             htmlBuilder.Append("</td>");
+
+                            columnIndex++; // Increment the column index
                         }
 
-                        // End HTML table row tag
                         htmlBuilder.Append("</tr>");
+                        columnIndex = 0; // Reset column index at the end of each row
                     }
 
-                    // End HTML table tag
                     htmlBuilder.Append("</table>");
                 }
 
-                // Save the generated HTML content to the output HTML file
+                htmlBuilder.Append("</body></html>");
+
+                // Write HTML string to output file
                 using (StreamWriter writer = new StreamWriter(outputHtmlPath))
                 {
                     writer.Write(htmlBuilder.ToString());
                 }
             }
         }
-
 
         public string GetlistThamgia(int ma)
         {
@@ -536,14 +557,22 @@ namespace Web_Girls.Controllers
         {
             List<KhenThuongView> list = Danhsachkhenthuong(ma, nam);
             string templatePath = Server.MapPath(@"~/Data/Templates/test4.docx");
+            string outputPath = Server.MapPath(@"~/Data/Templates/DanhSachKhenThuong.docx");
+            // Load the document template
             using (DocX document = DocX.Load(templatePath))
             {
+                // Replace placeholders in the document
                 document.ReplaceText("[TenDV]", GetTen(ma));
                 document.ReplaceText("[nam]", nam.ToString());
+
+                // Get the first table in the document
+                Table table = document.Tables[0];
+
+                // Populate data into the table
                 foreach (var item in list)
                 {
-                    Table table = document.Tables[0];
-                    Row newRow = table.InsertRow();
+                    Row newRow = table.InsertRow(); // Insert a new row into the table
+
                     newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
                     newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
                     newRow.Cells[2].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
@@ -553,48 +582,24 @@ namespace Web_Girls.Controllers
                     newRow.Cells[6].Paragraphs.First().Append(item.GhiChu).Alignment = Alignment.center;
                     newRow.Cells[7].Paragraphs.First().Append(item.Nam.ToString()).Alignment = Alignment.center;
                 }
-                string outputPath = Server.MapPath(@"~/Data/Templates/DanhSachKhenThuong.docx");
+
+               
+
+                // Save the modified document to the output path
                 document.SaveAs(outputPath);
             }
-            string dataDir = System.Web.HttpContext.Current.Server.MapPath(@"~/Data/Templates/");
-            Aspose.Words.Document newdoc = new Aspose.Words.Document(dataDir + "DanhSachKhenThuong.docx");
 
-            var link = dataDir + "render_DanhSachkhenthuong.doc.html";
-            //if (System.IO.File.Exists(link))
-            //{
-            //    StreamReader renderContentStream = new StreamReader(link);
-            //    string renderContent = renderContentStream.ReadToEnd();
-            //    ViewBag.DocumentContent = renderContent;
-            //    renderContentStream.Close();
-            //    return View();
-            //}
-            //else
-            //{
-            //Nếu file html của template vẫn chưa được gen ra html thì thực hiện bước này
-            DocumentBuilder builder = new DocumentBuilder(newdoc);
+            // Convert the saved DOCX file to HTML
+            string htmlPath = Server.MapPath(@"~/Data/Templates/render_DanhSachkhenthuong.doc.html");
+            ConvertDocxToHtml(outputPath, htmlPath);
 
-            // Save as .html file
-
-            Aspose.Words.Saving.HtmlSaveOptions option = new Aspose.Words.Saving.HtmlSaveOptions();
-            option.SaveFormat = SaveFormat.Html;
-            option.ExportImagesAsBase64 = true;
-            //Lưu lại dưới dạng html với tên là id của văn bản
-            newdoc.Save(dataDir + "before_render_DanhSachkhenthuong.doc.html", option);
-
-            // Insert Attribute placeholder to input elements
-            StreamReader reader = new StreamReader(dataDir + "before_render_DanhSachkhenthuong.doc.html");
-            string input2 = reader.ReadToEnd();
-            reader.Close();
-
-            ViewBag.DocumentContent = input2;
-            //String filename = Guid.NewGuid().ToString();
-            //StreamWriter writer = new StreamWriter(dataDir + "render_DanhSach.doc.html", false);
-            //writer.Write(input2);
-            //writer.Close();
+            // Read the HTML content to display in the view
+            string htmlContent = System.IO.File.ReadAllText(htmlPath);
+            ViewBag.DocumentContent = htmlContent;
 
             return View();
-
         }
+
         public List<KyLuatView> Danhsachkyluat(int ma, int? nam)
         {
             if (ma == 0)
@@ -659,14 +664,22 @@ namespace Web_Girls.Controllers
         {
             List<KyLuatView> list = Danhsachkyluat(ma, nam);
             string templatePath = Server.MapPath(@"~/Data/Templates/test5.docx");
+            string outputPath = Server.MapPath(@"~/Data/Templates/DanhSachKyLuat.docx");
+            // Load the document template
             using (DocX document = DocX.Load(templatePath))
             {
+                // Replace placeholders in the document
                 document.ReplaceText("[TenDV]", GetTen(ma));
                 document.ReplaceText("[nam]", nam.ToString());
+
+                // Get the first table in the document
+                Table table = document.Tables[0];
+
+                // Populate data into the table
                 foreach (var item in list)
                 {
-                    Table table = document.Tables[0];
-                    Row newRow = table.InsertRow();
+                    Row newRow = table.InsertRow(); // Insert a new row into the table
+
                     newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
                     newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
                     newRow.Cells[2].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
@@ -676,47 +689,22 @@ namespace Web_Girls.Controllers
                     newRow.Cells[6].Paragraphs.First().Append(item.GhiChu).Alignment = Alignment.center;
                     newRow.Cells[7].Paragraphs.First().Append(item.Nam.ToString()).Alignment = Alignment.center;
                 }
-                string outputPath = Server.MapPath(@"~/Data/Templates/DanhSachKyLuat.docx");
+
+                
+
+                // Save the modified document to the output path
                 document.SaveAs(outputPath);
             }
-            string dataDir = System.Web.HttpContext.Current.Server.MapPath(@"~/Data/Templates/");
-            Aspose.Words.Document newdoc = new Aspose.Words.Document(dataDir + "DanhSachKyLuat.docx");
 
-            var link = dataDir + "render_DanhSachkyluat.doc.html";
-            //if (System.IO.File.Exists(link))
-            //{
-            //    StreamReader renderContentStream = new StreamReader(link);
-            //    string renderContent = renderContentStream.ReadToEnd();
-            //    ViewBag.DocumentContent = renderContent;
-            //    renderContentStream.Close();
-            //    return View();
-            //}
-            //else
-            //{
-            //Nếu file html của template vẫn chưa được gen ra html thì thực hiện bước này
-            DocumentBuilder builder = new DocumentBuilder(newdoc);
+            // Convert the saved DOCX file to HTML
+            string htmlPath = Server.MapPath(@"~/Data/Templates/render_DanhSachkyluat.doc.html");
+            ConvertDocxToHtml(outputPath, htmlPath);
 
-            // Save as .html file
-
-            Aspose.Words.Saving.HtmlSaveOptions option = new Aspose.Words.Saving.HtmlSaveOptions();
-            option.SaveFormat = SaveFormat.Html;
-            option.ExportImagesAsBase64 = true;
-            //Lưu lại dưới dạng html với tên là id của văn bản
-            newdoc.Save(dataDir + "before_render_DanhSachkyluat.doc.html", option);
-
-            // Insert Attribute placeholder to input elements
-            StreamReader reader = new StreamReader(dataDir + "before_render_DanhSachkyluat.doc.html");
-            string input2 = reader.ReadToEnd();
-            reader.Close();
-
-            ViewBag.DocumentContent = input2;
-            //String filename = Guid.NewGuid().ToString();
-            //StreamWriter writer = new StreamWriter(dataDir + "render_DanhSach.doc.html", false);
-            //writer.Write(input2);
-            //writer.Close();
+            // Read the HTML content to display in the view
+            string htmlContent = System.IO.File.ReadAllText(htmlPath);
+            ViewBag.DocumentContent = htmlContent;
 
             return View();
-
         }
         [HttpPost]
         [Obsolete]
@@ -724,14 +712,22 @@ namespace Web_Girls.Controllers
         {
             List<XacNhanLDSTView> list = DanhsachLDST(ma, nam);
             string templatePath = Server.MapPath(@"~/Data/Templates/test3.docx");
+            string outputPath = Server.MapPath(@"~/Data/Templates/DanhSachLDST.docx");
+            // Load the document template
             using (DocX document = DocX.Load(templatePath))
             {
+                // Replace placeholders in the document
                 document.ReplaceText("[TenHPN]", GetTen(ma));
                 document.ReplaceText("[nam]", nam.ToString());
+
+                // Get the first table in the document
+                Table table = document.Tables[0];
+
+                // Populate data into the table
                 foreach (var item in list)
                 {
-                    Table table = document.Tables[0];
-                    Row newRow = table.InsertRow();
+                    Row newRow = table.InsertRow(); // Insert a new row into the table
+
                     newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
                     newRow.Cells[1].Paragraphs.First().Append(item.TenDetai).Alignment = Alignment.both;
                     newRow.Cells[2].Paragraphs.First().Append(item.LoaiDetai).Alignment = Alignment.center;
@@ -740,48 +736,24 @@ namespace Web_Girls.Controllers
                     newRow.Cells[5].Paragraphs.First().Append(item.ThamGia).Alignment = Alignment.center;
                     newRow.Cells[6].Paragraphs.First().Append(item.Nam.ToString()).Alignment = Alignment.center;
                 }
-                string outputPath = Server.MapPath(@"~/Data/Templates/DanhSachLDST.docx");
+
+               
+
+                // Save the modified document to the output path
                 document.SaveAs(outputPath);
             }
-            string dataDir = System.Web.HttpContext.Current.Server.MapPath(@"~/Data/Templates/");
-            Aspose.Words.Document newdoc = new Aspose.Words.Document(dataDir + "DanhSachLDST.docx");
 
-            var link = dataDir + "render_DanhSachLDST.doc.html";
-            //if (System.IO.File.Exists(link))
-            //{
-            //    StreamReader renderContentStream = new StreamReader(link);
-            //    string renderContent = renderContentStream.ReadToEnd();
-            //    ViewBag.DocumentContent = renderContent;
-            //    renderContentStream.Close();
-            //    return View();
-            //}
-            //else
-            //{
-            //Nếu file html của template vẫn chưa được gen ra html thì thực hiện bước này
-            DocumentBuilder builder = new DocumentBuilder(newdoc);
+            // Convert the saved DOCX file to HTML
+            string htmlPath = Server.MapPath(@"~/Data/Templates/render_DanhSachLDST.doc.html");
+            ConvertDocxToHtml(outputPath, htmlPath);
 
-            // Save as .html file
-
-            Aspose.Words.Saving.HtmlSaveOptions option = new Aspose.Words.Saving.HtmlSaveOptions();
-            option.SaveFormat = SaveFormat.Html;
-            option.ExportImagesAsBase64 = true;
-            //Lưu lại dưới dạng html với tên là id của văn bản
-            newdoc.Save(dataDir + "before_render_DanhSachLDST.doc.html", option);
-
-            // Insert Attribute placeholder to input elements
-            StreamReader reader = new StreamReader(dataDir + "before_render_DanhSachLDST.doc.html");
-            string input2 = reader.ReadToEnd();
-            reader.Close();
-
-            ViewBag.DocumentContent = input2;
-            //String filename = Guid.NewGuid().ToString();
-            //StreamWriter writer = new StreamWriter(dataDir + "render_DanhSach.doc.html", false);
-            //writer.Write(input2);
-            //writer.Close();
+            // Read the HTML content to display in the view
+            string htmlContent = System.IO.File.ReadAllText(htmlPath);
+            ViewBag.DocumentContent = htmlContent;
 
             return View();
-
         }
+
 
         public List<HoiVienView> InDanhSachDangVien(int MaHoi)
         {
@@ -1736,6 +1708,7 @@ namespace Web_Girls.Controllers
         [Obsolete]
         public ActionResult InDanhSachHCGD(int Ma)
         {
+            // Load data from various methods
             List<HoiVienView> listhongheo = InDanhSachHoNgheo(Ma);
             List<HoiVienView> listhocanngheo = InDanhSachHoCanNgheo(Ma);
             List<HoiVienView> listdakethon = InDanhSachDaKetHon(Ma);
@@ -1745,9 +1718,14 @@ namespace Web_Girls.Controllers
             List<HoiVienView> listchongcungdonvi = InDanhSachChongCungDonVi(Ma);
             List<HoiVienView> listconduoi16tuoi = InDanhSachConDuoi16Tuoi(Ma);
             List<HoiVienView> listmacbenh = InDanhSachBiBenh(Ma);
+
+            // Path to the template
             string templatePath = Server.MapPath(@"~/Data/Templates/test7.docx");
+
+            // Load the template document
             using (DocX document = DocX.Load(templatePath))
             {
+                // Replace placeholders with data
                 document.ReplaceText("[TenDV]", GetTen(Ma));
                 document.ReplaceText("[thang]", DateTime.Now.Month.ToString());
                 document.ReplaceText("[nam]", DateTime.Now.Year.ToString());
@@ -1761,146 +1739,46 @@ namespace Web_Girls.Controllers
                 document.ReplaceText("[ConDuoi16Tuoi]", listconduoi16tuoi.Count().ToString());
                 document.ReplaceText("[MacBenhHiemNgheo]", listmacbenh.Count().ToString());
 
-                foreach (var item in listhongheo)
-                {
-                    Table table = document.Tables[0];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listhocanngheo)
-                {
-                    Table table = document.Tables[1];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listdakethon)
-                {
-                    Table table = document.Tables[2];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listchuakethon)
-                {
-                    Table table = document.Tables[3];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listlyhon)
-                {
-                    Table table = document.Tables[4];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listchongmat)
-                {
-                    Table table = document.Tables[5];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listchongcungdonvi)
-                {
-                    Table table = document.Tables[6];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listconduoi16tuoi)
-                {
-                    Table table = document.Tables[7];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
-                foreach (var item in listmacbenh)
-                {
-                    Table table = document.Tables[8];
-                    Row newRow = table.InsertRow();
-                    newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
-                    newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
-                    newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
-                    newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
-                    newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
-                }
+                // Insert data into tables for different categories
+                InsertDataIntoTable(document.Tables[0], listhongheo);
+                InsertDataIntoTable(document.Tables[1], listhocanngheo);
+                InsertDataIntoTable(document.Tables[2], listdakethon);
+                InsertDataIntoTable(document.Tables[3], listchuakethon);
+                InsertDataIntoTable(document.Tables[4], listlyhon);
+                InsertDataIntoTable(document.Tables[5], listchongmat);
+                InsertDataIntoTable(document.Tables[6], listchongcungdonvi);
+                InsertDataIntoTable(document.Tables[7], listconduoi16tuoi);
+                InsertDataIntoTable(document.Tables[8], listmacbenh);
+
+                // Save the modified document
                 string outputPath = Server.MapPath(@"~/Data/Templates/DanhsachHCGD.docx");
                 document.SaveAs(outputPath);
+
+                // Convert DOCX to HTML using shared method
+                string htmlPath = Server.MapPath(@"~/Data/Templates/render_DanhSachHCGD.html");
+                ConvertDocxToHtml(outputPath, htmlPath);
+
+                // Read HTML content to display in view
+                string htmlContent = System.IO.File.ReadAllText(htmlPath);
+                ViewBag.DocumentContent = htmlContent;
             }
-            string dataDir = System.Web.HttpContext.Current.Server.MapPath(@"~/Data/Templates/");
-            Aspose.Words.Document newdoc = new Aspose.Words.Document(dataDir + "DanhsachHCGD.docx");
-
-            var link = dataDir + "render_DanhSachHCGD.doc.html";
-            //if (System.IO.File.Exists(link))
-            //{
-            //    StreamReader renderContentStream = new StreamReader(link);
-            //    string renderContent = renderContentStream.ReadToEnd();
-            //    ViewBag.DocumentContent = renderContent;
-            //    renderContentStream.Close();
-            //    return View();
-            //}
-            //else
-            //{
-            //Nếu file html của template vẫn chưa được gen ra html thì thực hiện bước này
-            DocumentBuilder builder = new DocumentBuilder(newdoc);
-
-            // Save as .html file
-
-            Aspose.Words.Saving.HtmlSaveOptions option = new Aspose.Words.Saving.HtmlSaveOptions();
-            option.SaveFormat = SaveFormat.Html;
-            option.ExportImagesAsBase64 = true;
-            //Lưu lại dưới dạng html với tên là id của văn bản
-            newdoc.Save(dataDir + "before_render_DanhSachHCGD.doc.html", option);
-
-            // Insert Attribute placeholder to input elements
-            StreamReader reader = new StreamReader(dataDir + "before_render_DanhSachHCGD.doc.html");
-            string input2 = reader.ReadToEnd();
-            reader.Close();
-
-            ViewBag.DocumentContent = input2;
-            //String filename = Guid.NewGuid().ToString();
-            //StreamWriter writer = new StreamWriter(dataDir + "render_DanhSach.doc.html", false);
-            //writer.Write(input2);
-            //writer.Close();
 
             return View();
+        }
 
+        // Shared method to insert data into a table in DocX document
+        private void InsertDataIntoTable(Table table, List<HoiVienView> dataList)
+        {
+            foreach (var item in dataList)
+            {
+                Row newRow = table.InsertRow();
+                newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
+                newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
+                newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
+                newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
+                newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
+                newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
+            }
         }
         [Obsolete]
         public ActionResult InDanhSachDV(int Ma)
@@ -1912,9 +1790,11 @@ namespace Web_Girls.Controllers
                 document.ReplaceText("[TenDV]", GetTen(Ma));
                 document.ReplaceText("[thang]", DateTime.Now.Month.ToString());
                 document.ReplaceText("[nam]", DateTime.Now.Year.ToString());
+
+                Table table = document.Tables[0]; // Assuming the table is the first table in the document
+
                 foreach (var item in list)
                 {
-                    Table table = document.Tables[0];
                     Row newRow = table.InsertRow();
                     newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
                     newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
@@ -1924,56 +1804,34 @@ namespace Web_Girls.Controllers
                     newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
                     newRow.Cells[6].Paragraphs.First().Append(item.LoaiDangVien).Alignment = Alignment.center;
                 }
+
                 string outputPath = Server.MapPath(@"~/Data/Templates/DanhsachDV.docx");
                 document.SaveAs(outputPath);
+
+                // Convert the DOCX file to HTML using shared method
+                string htmlPath = Server.MapPath(@"~/Data/Templates/render_DanhSachDV.html");
+                ConvertDocxToHtml(outputPath, htmlPath);
+
+                // Read the HTML content to display in the view
+                string htmlContent = System.IO.File.ReadAllText(htmlPath);
+                ViewBag.DocumentContent = htmlContent;
             }
-            string dataDir = System.Web.HttpContext.Current.Server.MapPath(@"~/Data/Templates/");
-            Aspose.Words.Document newdoc = new Aspose.Words.Document(dataDir + "DanhsachDV.docx");
-
-            var link = dataDir + "render_DanhSachDV.doc.html";
-            //if (System.IO.File.Exists(link))
-            //{
-            //    StreamReader renderContentStream = new StreamReader(link);
-            //    string renderContent = renderContentStream.ReadToEnd();
-            //    ViewBag.DocumentContent = renderContent;
-            //    renderContentStream.Close();
-            //    return View();
-            //}
-            //else
-            //{
-            //Nếu file html của template vẫn chưa được gen ra html thì thực hiện bước này
-            DocumentBuilder builder = new DocumentBuilder(newdoc);
-
-            // Save as .html file
-
-            Aspose.Words.Saving.HtmlSaveOptions option = new Aspose.Words.Saving.HtmlSaveOptions();
-            option.SaveFormat = SaveFormat.Html;
-            option.ExportImagesAsBase64 = true;
-            //Lưu lại dưới dạng html với tên là id của văn bản
-            newdoc.Save(dataDir + "before_render_DanhSachDV.doc.html", option);
-
-            // Insert Attribute placeholder to input elements
-            StreamReader reader = new StreamReader(dataDir + "before_render_DanhSachDV.doc.html");
-            string input2 = reader.ReadToEnd();
-            reader.Close();
-
-            ViewBag.DocumentContent = input2;
-            //String filename = Guid.NewGuid().ToString();
-            //StreamWriter writer = new StreamWriter(dataDir + "render_DanhSach.doc.html", false);
-            //writer.Write(input2);
-            //writer.Close();
 
             return View();
-
         }
         [Obsolete]
         public ActionResult Report(int Ma)
         {
+            // Generate report data
             BaoCao(Ma);
+
+            // Path to the template
             string templatePath = Server.MapPath(@"~/Data/Templates/test.docx");
+
+            // Load the template document
             using (DocX document = DocX.Load(templatePath))
             {
-
+                // Replace placeholders with data in the loaded document
                 document.ReplaceText("[TenHPN]", TenHPN);
                 document.ReplaceText("[thang]", DateTime.Now.Month.ToString());
                 document.ReplaceText("[nam]", DateTime.Now.Year.ToString());
@@ -2015,44 +1873,20 @@ namespace Web_Girls.Controllers
                 document.ReplaceText("[DVCT]", DangVienChinhThuc.ToString());
                 document.ReplaceText("[DVDB]", DangVienDuBi.ToString());
                 document.ReplaceText("[ChuaKN]", ChuaKetNap.ToString());
+
+                // Save the modified document
                 string outputPath = Server.MapPath(@"~/Data/Templates/BaoCao.docx");
                 document.SaveAs(outputPath);
+
+                // Convert DOCX to HTML using shared method
+                string htmlPath = Server.MapPath(@"~/Data/Templates/render_BaoCao2.html");
+                ConvertDocxToHtml(outputPath, htmlPath);
+
+                // Read HTML content to display in view
+                string htmlContent = System.IO.File.ReadAllText(htmlPath);
+                ViewBag.DocumentContent = htmlContent;
             }
-            string dataDir = System.Web.HttpContext.Current.Server.MapPath(@"~/Data/Templates/");
-            Aspose.Words.Document newdoc = new Aspose.Words.Document(dataDir + "BaoCao.docx");
 
-            var link = dataDir + "render_BaoCao2.doc.html";
-            //if (System.IO.File.Exists(link))
-            //{
-            //    StreamReader renderContentStream = new StreamReader(link);
-            //    string renderContent = renderContentStream.ReadToEnd();
-            //    ViewBag.DocumentContent = renderContent;
-            //    renderContentStream.Close();
-            //    return View();
-            //}
-            //else
-            //{
-            //Nếu file html của template vẫn chưa được gen ra html thì thực hiện bước này
-            DocumentBuilder builder = new DocumentBuilder(newdoc);
-
-            // Save as .html file
-
-            Aspose.Words.Saving.HtmlSaveOptions option = new Aspose.Words.Saving.HtmlSaveOptions();
-            option.SaveFormat = SaveFormat.Html;
-            option.ExportImagesAsBase64 = true;
-            ////Lưu lại dưới dạng html với tên là id của văn bản
-            newdoc.Save(dataDir + "before_render_BaoCao1.doc.html", option);
-
-            // Insert Attribute placeholder to input elements
-            StreamReader reader = new StreamReader(dataDir + "before_render_BaoCao1.doc.html");
-            string input2 = reader.ReadToEnd();
-            reader.Close();
-
-            ViewBag.DocumentContent = input2;
-            //String filename = Guid.NewGuid().ToString();
-            //StreamWriter writer = new StreamWriter(dataDir + "render_BaoCao1.doc.html", false);
-            //writer.Write(input2);
-            //writer.Close();
             return View();
         }
         public ActionResult TaiDanhSach()

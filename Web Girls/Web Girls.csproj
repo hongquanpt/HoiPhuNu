@@ -45,11 +45,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Words, Version=24.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aspose.Words.24.3.0\lib\net461\Aspose.Words.dll</HintPath>
+    <Reference Include="Aspose.Words, Version=24.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Words.24.4.0\lib\net462\Aspose.Words.dll</HintPath>
     </Reference>
-    <Reference Include="Aspose.Words.Pdf2Word, Version=24.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aspose.Words.24.3.0\lib\net461\Aspose.Words.Pdf2Word.dll</HintPath>
+    <Reference Include="Aspose.Words.Pdf2Word, Version=24.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Words.24.4.0\lib\net462\Aspose.Words.Pdf2Word.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.3.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.0.2\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -57,12 +63,118 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>..\packages\Enums.NET.4.0.1\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtendedNumerics.BigDecimal, Version=2023.1000.0.230, Culture=neutral, PublicKeyToken=65f1315a45ad8949, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExtendedNumerics.BigDecimal.2023.1000.0.230\lib\net472\ExtendedNumerics.BigDecimal.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.Signed.5.0.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.5.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.5.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.1\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.ImageSharp.2.1.7\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.2.88.6\lib\net462\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=22.1460.34.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.22.1.34\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Portable, Version=25.1.38.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Net.Core.25.1.38\lib\netstandard2.0\Syncfusion.Compression.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DocIO.Portable, Version=25.1.38.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.DocIO.Net.Core.25.1.38\lib\netstandard2.0\Syncfusion.DocIO.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=25.1462.38.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.25.1.38\lib\net462\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Base, Version=22.1460.34.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.OfficeChart.Base.22.1.34\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Portable, Version=25.1.38.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.OfficeChart.Net.Core.25.1.38\lib\netstandard2.0\Syncfusion.OfficeChart.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=22.1460.34.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Pdf.AspNet.22.1.34\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=6.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.6.0.3\lib\net461\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.6.0.1\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -113,9 +225,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -124,11 +233,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Document.NET, Version=2.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocX.2.5.0\lib\net40\Xceed.Document.NET.dll</HintPath>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Document.NET, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.3.0.0\lib\net40\Xceed.Document.NET.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Words.NET, Version=2.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocX.2.5.0\lib\net40\Xceed.Words.NET.dll</HintPath>
+    <Reference Include="Xceed.Words.NET, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.3.0.0\lib\net40\Xceed.Words.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -2197,6 +2307,9 @@
     <Content Include="Data\Templates\test5.docx" />
     <Content Include="Data\Templates\test6.docx" />
     <Content Include="Data\Templates\test7.docx" />
+    <None Include="Properties\PublishProfiles\hongquanpt-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\hongquanpt-001-site1 - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\hongquanpt-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2208,6 +2321,98 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pdf.js\build\pdf.js" />
+    <Content Include="Scripts\pdf.js\build\pdf.worker.js" />
+    <Content Include="Scripts\pdf.js\web\debugger.js" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-check.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-comment.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-help.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-insert.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-key.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-newparagraph.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-noicon.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-note.svg" />
+    <Content Include="Scripts\pdf.js\web\images\annotation-paragraph.svg" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-next%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-next-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-next-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-next.png" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-previous%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-previous-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-previous-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\findbarButton-previous.png" />
+    <Content Include="Scripts\pdf.js\web\images\grab.cur" />
+    <Content Include="Scripts\pdf.js\web\images\grabbing.cur" />
+    <Content Include="Scripts\pdf.js\web\images\loading-icon.gif" />
+    <Content Include="Scripts\pdf.js\web\images\loading-small%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\loading-small.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-documentProperties%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-documentProperties.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-firstPage%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-firstPage.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-handTool%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-handTool.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-lastPage%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-lastPage.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-rotateCcw%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-rotateCcw.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-rotateCw%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-rotateCw.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-selectTool%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\secondaryToolbarButton-selectTool.png" />
+    <Content Include="Scripts\pdf.js\web\images\shadow.png" />
+    <Content Include="Scripts\pdf.js\web\images\texture.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-bookmark%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-bookmark.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-download%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-download.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-menuArrows%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-menuArrows.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-openFile%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-openFile.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageDown%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageDown-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageDown-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageDown.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageUp%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageUp-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageUp-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-pageUp.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-presentationMode%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-presentationMode.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-print%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-print.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-search%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-search.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-secondaryToolbarToggle%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-secondaryToolbarToggle-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-secondaryToolbarToggle-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-secondaryToolbarToggle.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-sidebarToggle%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-sidebarToggle-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-sidebarToggle-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-sidebarToggle.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewAttachments%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewAttachments.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewOutline%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewOutline-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewOutline-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewOutline.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewThumbnail%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-viewThumbnail.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-zoomIn%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-zoomIn.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-zoomOut%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\toolbarButton-zoomOut.png" />
+    <Content Include="Scripts\pdf.js\web\images\treeitem-collapsed%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\treeitem-collapsed-rtl%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\treeitem-collapsed-rtl.png" />
+    <Content Include="Scripts\pdf.js\web\images\treeitem-collapsed.png" />
+    <Content Include="Scripts\pdf.js\web\images\treeitem-expanded%402x.png" />
+    <Content Include="Scripts\pdf.js\web\images\treeitem-expanded.png" />
+    <Content Include="Scripts\pdf.js\web\viewer.css" />
+    <Content Include="Scripts\pdf.js\web\viewer.html" />
+    <Content Include="Scripts\pdf.js\web\viewer.js" />
     <Content Include="Template\css\bootstrap.css" />
     <Content Include="Template\css\bootstrap.min.css" />
     <Content Include="Template\css\font-awesome.css" />
@@ -2422,6 +2627,285 @@
     <Content Include="Views\SinhHoat\IndexLoai.cshtml" />
     <Content Include="Views\SinhHoat\SuaLoaiSinhHoat.cshtml" />
     <Content Include="Views\SinhHoat\ThemHoiVienVang.cshtml" />
+    <Content Include="Scripts\pdf.js\web\viewer.js.map" />
+    <Content Include="Scripts\pdf.js\web\locale\zu\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\zh-TW\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\zh-CN\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\xh\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\wo\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\vi\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ur\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\uk\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\tr\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\tn\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\tl\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\th\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\te\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ta\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ta-LK\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\sw\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\sv-SE\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\sr\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\sq\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\son\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\sl\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\sk\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\si\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\sah\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\rw\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ru\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ro\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\rm\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\pt-PT\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\pt-BR\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\pl\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\pa-IN\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\or\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\oc\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\nso\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\nn-NO\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\nl\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\nb-NO\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\my\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ms\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\mr\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\mn\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ml\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\mk\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\mai\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\lv\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\lt\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\locale.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\lij\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\lg\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ku\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ko\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\kn\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\km\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\kk\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ka\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ja\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\it\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\is\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\id\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\hy-AM\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\hu\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\hr\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\hi-IN\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\he\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\gu-IN\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\gl\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\gd\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ga-IE\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\fy-NL\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\fr\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\fi\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ff\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\fa\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\eu\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\et\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\es-MX\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\es-ES\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\es-CL\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\es-AR\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\eo\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\en-ZA\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\en-US\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\en-GB\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\el\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\de\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\da\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\cy\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\cs\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\csb\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ca\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\bs\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\br\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\bn-IN\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\bn-BD\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\bg\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\be\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\az\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\as\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ast\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ar\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\an\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ak\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\af\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\locale\ach\viewer.properties" />
+    <Content Include="Scripts\pdf.js\web\compressed.tracemonkey-pldi-09.pdf" />
+    <Content Include="Scripts\pdf.js\web\cmaps\WP-Symbol.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UTF8-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UTF8-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UTF32-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UTF32-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UTF16-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UTF16-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UCS2-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniKS-UCS2-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJISX02132004-UTF32-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJISX02132004-UTF32-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJISX0213-UTF32-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJISX0213-UTF32-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJISPro-UTF8-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJISPro-UCS2-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJISPro-UCS2-HW-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS2004-UTF8-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS2004-UTF8-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS2004-UTF32-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS2004-UTF32-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS2004-UTF16-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS2004-UTF16-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UTF8-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UTF8-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UTF32-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UTF32-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UTF16-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UTF16-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UCS2-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UCS2-HW-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UCS2-HW-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniJIS-UCS2-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UTF8-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UTF8-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UTF32-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UTF32-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UTF16-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UTF16-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UCS2-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniGB-UCS2-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UTF8-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UTF8-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UTF32-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UTF32-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UTF16-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UTF16-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UCS2-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\UniCNS-UCS2-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Roman.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\NWP-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\NWP-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\LICENSE" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSCpc-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSCpc-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSCms-UHC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSCms-UHC-HW-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSCms-UHC-HW-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSCms-UHC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSC-Johab-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSC-Johab-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSC-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\KSC-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Katakana.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKscs-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKscs-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKm471-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKm471-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKm314-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKm314-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKgccs-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKgccs-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKdlb-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKdlb-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKdla-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\HKdla-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Hiragana.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Hankaku.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBTpc-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBTpc-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBT-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBT-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBT-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBT-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBpc-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBpc-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBKp-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBKp-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBK2K-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBK2K-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBK-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GBK-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GB-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GB-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GB-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\GB-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Ext-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Ext-RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Ext-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Ext-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\ETHK-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\ETHK-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\ETenms-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\ETenms-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\ETen-B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\ETen-B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\CNS2-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\CNS2-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\CNS1-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\CNS1-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\CNS-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\CNS-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\B5pc-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\B5pc-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\B5-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\B5-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Korea1-UCS2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Korea1-2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Korea1-1.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Korea1-0.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-UCS2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-6.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-5.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-4.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-3.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-1.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-Japan1-0.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-GB1-UCS2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-GB1-5.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-GB1-4.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-GB1-3.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-GB1-2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-GB1-1.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-GB1-0.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-UCS2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-6.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-5.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-4.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-3.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-2.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-1.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Adobe-CNS1-0.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Add-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Add-RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Add-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\Add-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\90pv-RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\90pv-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\90msp-RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\90msp-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\90ms-RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\90ms-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\83pv-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78ms-RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78ms-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78-RKSJ-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78-RKSJ-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78-H.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78-EUC-V.bcmap" />
+    <Content Include="Scripts\pdf.js\web\cmaps\78-EUC-H.bcmap" />
+    <Content Include="Scripts\pdf.js\LICENSE" />
+    <Content Include="Scripts\pdf.js\build\pdf.worker.js.map" />
+    <Content Include="Scripts\pdf.js\build\pdf.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2466,7 +2950,13 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets'))" />
+    <Error Condition="!Exists('..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets'))" />
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
+  <Import Project="..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets')" />
+  <Import Project="..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets')" />
+  <Import Project="..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

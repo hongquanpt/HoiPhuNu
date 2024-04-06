@@ -8,7 +8,7 @@ namespace Web_Girls.Models.Context
     public partial class MyContext : DbContext
     {
         public MyContext()
-            : base("name=MyContext1")
+            : base("name=MyContext")
         {
         }
 

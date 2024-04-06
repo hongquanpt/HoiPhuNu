@@ -10,6 +10,8 @@ using Xceed.Document.NET;
 using Web_Girls.Models.Context;
 using Web_Girls.Models.ModelsView;
 using System.Data.SqlClient;
+using Xceed.Document.NET;
+using System.Text;
 
 namespace Web_Girls.Controllers
 {
@@ -284,64 +286,106 @@ namespace Web_Girls.Controllers
         [Obsolete]
         public ActionResult InDanhSachHV(int Ma)
         {
+            // Load data and process as needed
             List<HoiVienView> list = InDanhSach(Ma);
-            string templatePath = Server.MapPath(@"~/Data/Templates/test2.docx");
+
+            // Paths for template and output files
+            string templatePath = Server.MapPath("~/Data/Templates/test2.docx");
+            string outputPath = Server.MapPath("~/Data/Templates/DanhsachHV.docx");
+
+            // Load the document from the template
             using (DocX document = DocX.Load(templatePath))
             {
+                // Replace placeholder with actual value
                 document.ReplaceText("[TenHPN]", GetTen(Ma));
+
+                // Find and populate the table in the document
+                Table table = document.Tables[0]; // Assuming the table is the first table in the document
                 foreach (var item in list)
                 {
-                    Table table = document.Tables[0];
-                    Row newRow = table.InsertRow();
+                    Row newRow = table.InsertRow(); // Insert a new row into the table
+
+                    // Populate cells in the new row
                     newRow.Cells[0].Paragraphs.First().Append(item.STT.ToString()).Alignment = Alignment.center;
                     newRow.Cells[1].Paragraphs.First().Append(item.TenHV).Alignment = Alignment.both;
-                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh.Value.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
+                    newRow.Cells[2].Paragraphs.First().Append(item.NgaySinh?.ToString("dd/MM/yyyy")).Alignment = Alignment.center;
                     newRow.Cells[3].Paragraphs.First().Append(item.CapBac).Alignment = Alignment.center;
                     newRow.Cells[4].Paragraphs.First().Append(item.DonVi).Alignment = Alignment.center;
                     newRow.Cells[5].Paragraphs.First().Append(item.ChiHoiPN).Alignment = Alignment.center;
                 }
-                string outputPath = Server.MapPath(@"~/Data/Templates/DanhsachHV.docx");
+
+                // Save the modified document to the output path
                 document.SaveAs(outputPath);
             }
-            string dataDir = System.Web.HttpContext.Current.Server.MapPath(@"~/Data/Templates/");
-            Aspose.Words.Document newdoc = new Aspose.Words.Document(dataDir + "DanhsachHV.docx");
 
-            var link = dataDir + "render_DanhSach.doc.html";
-            //if (System.IO.File.Exists(link))
-            //{
-            //    StreamReader renderContentStream = new StreamReader(link);
-            //    string renderContent = renderContentStream.ReadToEnd();
-            //    ViewBag.DocumentContent = renderContent;
-            //    renderContentStream.Close();
-            //    return View();
-            //}
-            //else
-            //{
-            //Nếu file html của template vẫn chưa được gen ra html thì thực hiện bước này
-            DocumentBuilder builder = new DocumentBuilder(newdoc);
+            // Convert the DOCX file to HTML for rendering
+            string htmlPath = Server.MapPath("~/Data/Templates/render_DanhSach.html");
+            ConvertDocxToHtml(outputPath, htmlPath);
 
-            // Save as .html file
-
-            Aspose.Words.Saving.HtmlSaveOptions option = new Aspose.Words.Saving.HtmlSaveOptions();
-            option.SaveFormat = SaveFormat.Html;
-            option.ExportImagesAsBase64 = true;
-            //Lưu lại dưới dạng html với tên là id của văn bản
-            newdoc.Save(dataDir + "before_render_DanhSach.doc.html", option);
-
-            // Insert Attribute placeholder to input elements
-            StreamReader reader = new StreamReader(dataDir + "before_render_DanhSach.doc.html");
-            string input2 = reader.ReadToEnd();
-            reader.Close();
-
-            ViewBag.DocumentContent = input2;
-            //String filename = Guid.NewGuid().ToString();
-            //StreamWriter writer = new StreamWriter(dataDir + "render_DanhSach.doc.html", false);
-            //writer.Write(input2);
-            //writer.Close();
+            // Read the HTML content to display in the view
+            string htmlContent = System.IO.File.ReadAllText(htmlPath);
+            ViewBag.DocumentContent = htmlContent;
 
             return View();
-
         }
+
+        // Helper method to convert DOCX to HTML
+        private void ConvertDocxToHtml(string inputDocxPath, string outputHtmlPath)
+        {
+            // Load the DOCX document
+            using (DocX doc = DocX.Load(inputDocxPath))
+            {
+                // Initialize HTML content builder
+                StringBuilder htmlBuilder = new StringBuilder();
+
+                // Iterate through each table in the document
+                foreach (Table table in doc.Tables)
+                {
+                    // Start HTML table tag
+                    htmlBuilder.Append("<table border='1'>");
+
+                    // Iterate through each row in the table
+                    foreach (Row row in table.Rows)
+                    {
+                        // Start HTML table row tag
+                        htmlBuilder.Append("<tr>");
+
+                        // Iterate through each cell in the row
+                        foreach (Cell cell in row.Cells)
+                        {
+                            // Start HTML table cell tag
+                            htmlBuilder.Append("<td>");
+
+                            // Iterate through each paragraph in the cell
+                            foreach (Xceed.Document.NET.Paragraph paragraph in cell.Paragraphs)
+                            {
+                                // Append text content of the paragraph as HTML
+                                htmlBuilder.Append("<p>");
+                                htmlBuilder.Append(paragraph.Text);
+                                htmlBuilder.Append("</p>");
+                            }
+
+                            // End HTML table cell tag
+                            htmlBuilder.Append("</td>");
+                        }
+
+                        // End HTML table row tag
+                        htmlBuilder.Append("</tr>");
+                    }
+
+                    // End HTML table tag
+                    htmlBuilder.Append("</table>");
+                }
+
+                // Save the generated HTML content to the output HTML file
+                using (StreamWriter writer = new StreamWriter(outputHtmlPath))
+                {
+                    writer.Write(htmlBuilder.ToString());
+                }
+            }
+        }
+
+
         public string GetlistThamgia(int ma)
         {
             string Tg = "";
@@ -437,9 +481,9 @@ namespace Web_Girls.Controllers
                                   join b in obj.HoiViens on a.MaHV equals b.MaHV
                                   join c in obj.DonVis on b.MaDV equals c.MaDV
                                   join d in obj.HoiPhuNus on b.MaHPN equals d.MaHPN
-                                  where a.XacNhan == true && a.Nam == nam                               
+                                  where a.XacNhan == true && a.Nam == nam
                                   select new KhenThuongView()
-                                  {                                   
+                                  {
                                       TenHV = b.TenHV,
                                       Nam = a.Nam,
                                       TenKhenThuong = a.TenKhenThuong,
@@ -464,10 +508,10 @@ namespace Web_Girls.Controllers
                                   join b in obj.HoiViens on a.MaHV equals b.MaHV
                                   join c in obj.DonVis on b.MaDV equals c.MaDV
                                   join d in obj.HoiPhuNus on b.MaHPN equals d.MaHPN
-                                  where d.MaHPN == ma && a.XacNhan == true && a.Nam == nam                               
+                                  where d.MaHPN == ma && a.XacNhan == true && a.Nam == nam
                                   select new KhenThuongView()
                                   {
-                                     
+
                                       TenHV = b.TenHV,
                                       Nam = a.Nam,
                                       TenKhenThuong = a.TenKhenThuong,
@@ -557,20 +601,20 @@ namespace Web_Girls.Controllers
             {
                 List<KyLuatView> list = new List<KyLuatView>();
                 var kyluat = (from a in obj.KyLuats
-                                  join b in obj.HoiViens on a.MaHV equals b.MaHV
-                                  join c in obj.DonVis on b.MaDV equals c.MaDV
-                                  join d in obj.HoiPhuNus on b.MaHPN equals d.MaHPN
-                                  where  a.Nam == nam
-                                  select new KyLuatView()
-                                  {
-                                      TenHV = b.TenHV,
-                                      Nam = a.Nam,
-                                      HinhThucKL = a.HinhThucKyLuat,
-                                      LyDo = a.LyDo,
-                                      DonVi = c.TenDV,
-                                      HPN = d.TenHPN,
-                                      GhiChu = a.GhiChu
-                                  }).ToList();
+                              join b in obj.HoiViens on a.MaHV equals b.MaHV
+                              join c in obj.DonVis on b.MaDV equals c.MaDV
+                              join d in obj.HoiPhuNus on b.MaHPN equals d.MaHPN
+                              where a.Nam == nam
+                              select new KyLuatView()
+                              {
+                                  TenHV = b.TenHV,
+                                  Nam = a.Nam,
+                                  HinhThucKL = a.HinhThucKyLuat,
+                                  LyDo = a.LyDo,
+                                  DonVi = c.TenDV,
+                                  HPN = d.TenHPN,
+                                  GhiChu = a.GhiChu
+                              }).ToList();
                 list = kyluat;
                 int i = 1;
                 foreach (var item in list)
@@ -587,13 +631,13 @@ namespace Web_Girls.Controllers
                                   join b in obj.HoiViens on a.MaHV equals b.MaHV
                                   join c in obj.DonVis on b.MaDV equals c.MaDV
                                   join d in obj.HoiPhuNus on b.MaHPN equals d.MaHPN
-                                  where d.MaHPN == ma  && a.Nam == nam
+                                  where d.MaHPN == ma && a.Nam == nam
                                   select new KyLuatView()
                                   {
 
                                       TenHV = b.TenHV,
                                       Nam = a.Nam,
-                                      HinhThucKL= a.HinhThucKyLuat,
+                                      HinhThucKL = a.HinhThucKyLuat,
                                       LyDo = a.LyDo,
                                       DonVi = c.TenDV,
                                       HPN = d.TenHPN,
@@ -746,7 +790,7 @@ namespace Web_Girls.Controllers
                 List<HoiVienView> list = new List<HoiVienView>();
                 var ds = (from a in obj.HoiViens
                           join b in obj.TaiKhoans on a.MaHV equals b.MaHV
-                          where a.GioiTinh == false && b.Khoa == false && (a.MaLDV ==1 || a.MaLDV ==2)
+                          where a.GioiTinh == false && b.Khoa == false && (a.MaLDV == 1 || a.MaLDV == 2)
                           select a).ToList();
                 int i = 1;
                 foreach (var it in ds)
@@ -759,7 +803,7 @@ namespace Web_Girls.Controllers
                         MaCB = obj.Database.SqlQuery<int>("SELECT TOP 1 MaCB FROM dbo.LichSuCapBac WHERE MaHV = @MaHV AND XacNhan = 1 ORDER BY NgayQD DESC", new SqlParameter("MaHV", it.MaHV)).FirstOrDefault(),
                         DonVi = obj.DonVis.Find(it.MaDV).TenDV,
                         ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,
-                        LoaiDangVien = obj.LoaiDangViens.Find(it.MaLDV).TenLDV                       
+                        LoaiDangVien = obj.LoaiDangViens.Find(it.MaLDV).TenLDV
                     };
                     if (hv.MaCB == 1) hv.CapBac = "H1";
                     else if (hv.MaCB == 2) hv.CapBac = "H2";
@@ -853,7 +897,7 @@ namespace Web_Girls.Controllers
                         NgaySinh = it.NgaySinh,
                         MaCB = obj.Database.SqlQuery<int>("SELECT TOP 1 MaCB FROM dbo.LichSuCapBac WHERE MaHV = @MaHV AND XacNhan = 1 ORDER BY NgayQD DESC", new SqlParameter("MaHV", it.MaHV)).FirstOrDefault(),
                         DonVi = obj.DonVis.Find(it.MaDV).TenDV,
-                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,                       
+                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,
                     };
                     if (hv.MaCB == 1) hv.CapBac = "H1";
                     else if (hv.MaCB == 2) hv.CapBac = "H2";
@@ -879,7 +923,7 @@ namespace Web_Girls.Controllers
                     i++;
                 }
                 return list;
-               
+
             }
             else
             {
@@ -899,7 +943,7 @@ namespace Web_Girls.Controllers
                         NgaySinh = it.NgaySinh,
                         MaCB = obj.Database.SqlQuery<int>("SELECT TOP 1 MaCB FROM dbo.LichSuCapBac WHERE MaHV = @MaHV AND XacNhan = 1 ORDER BY NgayQD DESC", new SqlParameter("MaHV", it.MaHV)).FirstOrDefault(),
                         DonVi = obj.DonVis.Find(it.MaDV).TenDV,
-                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,                  
+                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,
                     };
                     if (hv.MaCB == 1) hv.CapBac = "H1";
                     else if (hv.MaCB == 2) hv.CapBac = "H2";
@@ -948,7 +992,7 @@ namespace Web_Girls.Controllers
                         NgaySinh = it.NgaySinh,
                         MaCB = obj.Database.SqlQuery<int>("SELECT TOP 1 MaCB FROM dbo.LichSuCapBac WHERE MaHV = @MaHV AND XacNhan = 1 ORDER BY NgayQD DESC", new SqlParameter("MaHV", it.MaHV)).FirstOrDefault(),
                         DonVi = obj.DonVis.Find(it.MaDV).TenDV,
-                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,                    
+                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,
                     };
                     if (hv.MaCB == 1) hv.CapBac = "H1";
                     else if (hv.MaCB == 2) hv.CapBac = "H2";
@@ -994,7 +1038,7 @@ namespace Web_Girls.Controllers
                         NgaySinh = it.NgaySinh,
                         MaCB = obj.Database.SqlQuery<int>("SELECT TOP 1 MaCB FROM dbo.LichSuCapBac WHERE MaHV = @MaHV AND XacNhan = 1 ORDER BY NgayQD DESC", new SqlParameter("MaHV", it.MaHV)).FirstOrDefault(),
                         DonVi = obj.DonVis.Find(it.MaDV).TenDV,
-                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,                     
+                        ChiHoiPN = obj.HoiPhuNus.Find(it.MaHPN).TenHPN,
                     };
                     if (hv.MaCB == 1) hv.CapBac = "H1";
                     else if (hv.MaCB == 2) hv.CapBac = "H2";
@@ -1699,8 +1743,8 @@ namespace Web_Girls.Controllers
             List<HoiVienView> listlyhon = InDanhSachLyHon(Ma);
             List<HoiVienView> listchongmat = InDanhSachChongMat(Ma);
             List<HoiVienView> listchongcungdonvi = InDanhSachChongCungDonVi(Ma);
-            List<HoiVienView> listconduoi16tuoi =InDanhSachConDuoi16Tuoi(Ma);
-            List<HoiVienView> listmacbenh =InDanhSachBiBenh(Ma);
+            List<HoiVienView> listconduoi16tuoi = InDanhSachConDuoi16Tuoi(Ma);
+            List<HoiVienView> listmacbenh = InDanhSachBiBenh(Ma);
             string templatePath = Server.MapPath(@"~/Data/Templates/test7.docx");
             using (DocX document = DocX.Load(templatePath))
             {
@@ -1716,7 +1760,7 @@ namespace Web_Girls.Controllers
                 document.ReplaceText("[ChongCungDonVi]", listchongcungdonvi.Count().ToString());
                 document.ReplaceText("[ConDuoi16Tuoi]", listconduoi16tuoi.Count().ToString());
                 document.ReplaceText("[MacBenhHiemNgheo]", listmacbenh.Count().ToString());
-                
+
                 foreach (var item in listhongheo)
                 {
                     Table table = document.Tables[0];

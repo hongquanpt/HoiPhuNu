@@ -2307,8 +2307,6 @@
     <Content Include="Data\Templates\test5.docx" />
     <Content Include="Data\Templates\test6.docx" />
     <Content Include="Data\Templates\test7.docx" />
-    <None Include="Properties\PublishProfiles\hongquanpt-001-site1 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\hongquanpt-001-site1 - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\hongquanpt-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
